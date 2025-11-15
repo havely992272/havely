@@ -8,7 +8,6 @@
     <application
         android:allowBackup="false"
         android:label="Havely"
-        android:theme="@style/Theme.Havely"
         android:usesCleartextTraffic="true">
         
         <activity
