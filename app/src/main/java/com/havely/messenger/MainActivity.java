@@ -54,7 +54,7 @@ public class MainActivity extends Activity {
             // TODO: Открыть поиск
         });
         
-        findViewById(R.id.fabCreateChat).setClickListener(v -> {
+        findViewById(R.id.fabCreateChat).setOnClickListener(v -> {
             // TODO: Создать новый чат
         });
     }
