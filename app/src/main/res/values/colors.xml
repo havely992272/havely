@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Old Havely Colors (for compatibility) -->
-    <color name="havely_primary">#2B5278</color>
-    <color name="havely_primary_dark">#1C3651</color>
-    <color name="havely_accent">#5288C1</color>
-    <color name="havely_secondary">#7F91A8</color>
-    <color name="havely_background">#0E1621</color>
-    <color name="havely_surface">#17212B</color>
-    
     <!-- Telegram Colors -->
     <color name="telegram_background">#0E1621</color>
     <color name="telegram_surface">#17212B</color>
