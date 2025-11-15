@@ -9,43 +9,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.DocumentSnapshot;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 public class MainActivity extends Activity {
 
     private EditText usernameInput, messageInput;
     private Button startButton, sendButton;
     private LinearLayout chatContainer, messageInputLayout;
-    
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore db;
     private String currentUsername = "";
-    private ListenerRegistration messagesListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        
         initializeViews();
         setupClickListeners();
-        
-        if (mAuth.getCurrentUser() != null) {
-            showChatInterface();
-            setupMessagesListener();
-        }
     }
     
     private void initializeViews() {
@@ -63,92 +40,23 @@ public class MainActivity extends Activity {
             if (username.isEmpty()) {
                 Toast.makeText(this, "Введите никнейм", Toast.LENGTH_SHORT).show();
             } else {
-                startAnonymousAuth(username);
+                startChat(username);
             }
         });
         
         sendButton.setOnClickListener(v -> {
-            String messageText = messageInput.getText().toString().trim();
-            if (!messageText.isEmpty()) {
-                sendMessageToFirestore(messageText);
+            String message = messageInput.getText().toString().trim();
+            if (!message.isEmpty()) {
+                addMessage(currentUsername, message, "#9D4EDD");
                 messageInput.setText("");
             }
         });
     }
     
-    private void startAnonymousAuth(String username) {
+    private void startChat(String username) {
         currentUsername = username;
-        addMessage("System", "Создаем анонимный аккаунт...", "#4A0080");
-        
-        mAuth.signInAnonymously().addOnCompleteListener(this, task -> {
-            if (task.isSuccessful()) {
-                FirebaseUser user = mAuth.getCurrentUser();
-                if (user != null) {
-                    saveUserToFirestore(user.getUid(), username);
-                    showChatInterface();
-                    setupMessagesListener();
-                    addMessage("System", "✅ Анонимный аккаунт создан!", "#00E676");
-                }
-            } else {
-                addMessage("System", "❌ Ошибка создания аккаунта", "#CF6679");
-            }
-        });
-    }
-    
-    private void saveUserToFirestore(String userId, String username) {
-        Map<String, Object> user = new HashMap<>();
-        user.put("username", username);
-        user.put("createdAt", new Date());
-        user.put("lastSeen", new Date());
-        
-        db.collection("users").document(userId)
-            .set(user)
-            .addOnSuccessListener(aVoid -> {
-                // Успешно сохранено
-            })
-            .addOnFailureListener(e -> {
-                // Ошибка
-            });
-    }
-    
-    private void sendMessageToFirestore(String messageText) {
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user == null) return;
-        
-        Map<String, Object> message = new HashMap<>();
-        message.put("userId", user.getUid());
-        message.put("username", currentUsername);
-        message.put("text", messageText);
-        message.put("timestamp", new Date());
-        message.put("isEncrypted", false);
-        
-        db.collection("messages")
-            .add(message)
-            .addOnSuccessListener(documentReference -> {
-                // Сообщение отправлено
-            })
-            .addOnFailureListener(e -> {
-                addMessage("System", "❌ Ошибка отправки", "#CF6679");
-            });
-    }
-    
-    private void setupMessagesListener() {
-        messagesListener = db.collection("messages")
-            .orderBy("timestamp", Query.Direction.ASCENDING)
-            .addSnapshotListener((querySnapshot, error) -> {
-                if (error != null) return;
-                
-                if (querySnapshot != null) {
-                    for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-                        String username = document.getString("username");
-                        String text = document.getString("text");
-                        
-                        if (username != null && text != null) {
-                            addMessage(username, text, "#9D4EDD");
-                        }
-                    }
-                }
-            });
+        showChatInterface();
+        addMessage("System", "Добро пожаловать в Havely, " + username + "!", "#4A0080");
     }
     
     private void showChatInterface() {
@@ -178,13 +86,5 @@ public class MainActivity extends Activity {
             chatContainer.addView(msgView);
             chatContainer.post(() -> chatContainer.scrollTo(0, chatContainer.getBottom()));
         });
-    }
-    
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (messagesListener != null) {
-            messagesListener.remove();
-        }
     }
 }
