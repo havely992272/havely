@@ -1,6 +1,7 @@
 package com.havely.messenger;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +25,11 @@ public class MainActivity extends Activity {
             if (username.isEmpty()) {
                 Toast.makeText(this, "Введите никнейм", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Добро пожаловать, " + username + "!", Toast.LENGTH_LONG).show();
-                // Здесь будет переход в чат
+                // Переход в чат
+                Intent intent = new Intent(MainActivity.this, ChatActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+                finish(); // Закрываем экран регистрации
             }
         });
     }
