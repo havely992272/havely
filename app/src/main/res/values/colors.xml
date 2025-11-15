@@ -1,41 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Light Theme Colors -->
-    <color name="light_background">#FFFFFF</color>
-    <color name="light_surface">#F5F5F5</color>
-    <color name="light_primary">#0088CC</color>
-    <color name="light_accent">#3390FF</color>
-    <color name="light_text_primary">#000000</color>
-    <color name="light_text_secondary">#666666</color>
-    <color name="light_green">#00A884</color>
+    <!-- White Theme Colors -->
+    <color name="white_background">#FFFFFF</color>
+    <color name="white_surface">#F5F5F5</color>
+    <color name="white_primary">#000000</color>
+    <color name="white_accent">#3390FF</color>
+    <color name="white_text_primary">#000000</color>
+    <color name="white_text_secondary">#666666</color>
     
-    <!-- Dark Theme Colors -->
-    <color name="dark_background">#0E1621</color>
-    <color name="dark_surface">#17212B</color>
-    <color name="dark_primary">#2B5278</color>
-    <color name="dark_accent">#5288C1</color>
-    <color name="dark_text_primary">#FFFFFF</color>
-    <color name="dark_text_secondary">#7F91A8</color>
-    <color name="dark_green">#00BFA5</color>
+    <!-- Black Theme Colors -->
+    <color name="black_background">#000000</color>
+    <color name="black_surface">#1A1A1A</color>
+    <color name="black_primary">#FFFFFF</color>
+    <color name="black_accent">#3390FF</color>
+    <color name="black_text_primary">#FFFFFF</color>
+    <color name="black_text_secondary">#AAAAAA</color>
     
-    <!-- Dynamic Colors (will be set programmatically) -->
-    <color name="telegram_background">#FFFFFF</color>
-    <color name="telegram_surface">#F5F5F5</color>
-    <color name="telegram_primary">#0088CC</color>
-    <color name="telegram_accent">#3390FF</color>
-    <color name="telegram_text_primary">#000000</color>
-    <color name="telegram_text_secondary">#666666</color>
-    <color name="telegram_green">#00A884</color>
+    <!-- Current Theme Colors (will be set dynamically) -->
+    <color name="app_background">#FFFFFF</color>
+    <color name="app_surface">#F5F5F5</color>
+    <color name="app_primary">#000000</color>
+    <color name="app_accent">#3390FF</color>
+    <color name="app_text_primary">#000000</color>
+    <color name="app_text_secondary">#666666</color>
     
     <!-- Basic Colors -->
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
-    
-    <!-- Old Colors for Compatibility -->
-    <color name="havely_primary">#0088CC</color>
-    <color name="havely_primary_dark">#0066A3</color>
-    <color name="havely_accent">#3390FF</color>
-    <color name="havely_secondary">#666666</color>
-    <color name="havely_background">#FFFFFF</color>
-    <color name="havely_surface">#F5F5F5</color>
 </resources>
