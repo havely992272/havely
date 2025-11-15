@@ -2,79 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/havely_background"
     android:orientation="vertical">
 
-    <!-- Status Bar Background -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="24dp"
-        android:background="@color/havely_primary" />
-
-    <!-- App Bar -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/havely_primary"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="🔒 Havely"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/onlineStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🟢 0 online"
-            android:textColor="#00E676"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-
-    <!-- Messages Container -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messagesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp" />
-
-    <!-- Message Input -->
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:background="@color/havely_surface">
+        android:text="Havely Messenger"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:padding="16dp" />
 
-        <EditText
-            android:id="@+id/messageInput"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Type a message..."
-            android:maxLines="3"
-            android:textColor="@color/white"
-            android:textColorHint="@color/havely_secondary"
-            android:background="@drawable/edittext_background"
-            android:padding="12dp" />
-
-        <Button
-            android:id="@+id/sendButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="8dp"
-            android:text="⬆️"
-            android:background="@drawable/button_background"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
 </LinearLayout>
