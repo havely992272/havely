@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/telegram_background"
+    android:background="@color/white_background"
     android:orientation="vertical"
     android:padding="40dp"
     android:gravity="center">
@@ -16,7 +16,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:text="🌙"
-        android:textColor="@color/telegram_text_primary"
+        android:textColor="@color/white_text_primary"
         android:textSize="18sp" />
 
     <!-- App Icon -->
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Havely"
-        android:textColor="@color/telegram_text_primary"
+        android:textColor="@color/white_text_primary"
         android:textSize="32sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp" />
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Быстрый и безопасный мессенджер"
-        android:textColor="@color/telegram_text_secondary"
+        android:textColor="@color/white_text_secondary"
         android:textSize="16sp"
         android:layout_marginBottom="60dp" />
 
@@ -54,8 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:hint="Введите ваш никнейм"
-        android:textColor="@color/telegram_text_primary"
-        android:textColorHint="@color/telegram_text_secondary"
+        android:textColor="@color/white_text_primary"
+        android:textColorHint="@color/white_text_secondary"
         android:background="@drawable/telegram_input_background"
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Создавая аккаунт, вы принимаете условия использования"
-        android:textColor="@color/telegram_text_secondary"
+        android:textColor="@color/white_text_secondary"
         android:textSize="12sp"
         android:gravity="center"
         android:layout_marginTop="40dp" />
