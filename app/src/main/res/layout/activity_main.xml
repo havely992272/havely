@@ -18,19 +18,20 @@
             android:layout_height="56dp"
             android:background="@color/app_surface"
             android:orientation="horizontal"
-            android:paddingHorizontal="16dp"
+            android:paddingHorizontal="8dp"
             android:gravity="center_vertical">
 
-            <!-- Menu Button (объемнее) -->
+            <!-- Menu Button (сдвинут влево) -->
             <Button
                 android:id="@+id/menuButton"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:text="☰"
+                app:drawableStartCompat="@drawable/ic_menu"
                 android:textColor="@color/app_text_primary"
-                android:textSize="28sp" />
+                android:textSize="24sp" />
 
             <!-- Title -->
             <TextView
@@ -43,14 +44,15 @@
                 android:textStyle="bold"
                 android:gravity="center" />
 
-            <!-- Search Button -->
+            <!-- Search Button (без эмодзи) -->
             <Button
                 android:id="@+id/searchButton"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center"
-                android:text="🔍"
+                app:drawableStartCompat="@drawable/ic_search"
                 android:textColor="@color/app_text_primary"
                 android:textSize="24sp" />
 
@@ -78,8 +80,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="💬"
-                android:textSize="64sp"
+                app:drawableStartCompat="@drawable/ic_chat"
                 android:textColor="@color/app_text_primary"
                 android:layout_marginBottom="24dp" />
 
@@ -102,15 +103,14 @@
 
         </LinearLayout>
 
-        <!-- Floating Action Button -->
+        <!-- Floating Action Button (без эмодзи) -->
         <Button
             android:id="@+id/fabCreateChat"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            android:text="✏️"
-            android:textSize="20sp"
+            app:drawableStartCompat="@drawable/ic_edit"
             android:background="@drawable/fab_background"
             android:textColor="@color/white" />
 
@@ -146,8 +146,7 @@
                     android:layout_height="60dp"
                     android:gravity="center"
                     android:background="@drawable/avatar_background"
-                    android:text="👤"
-                    android:textSize="28sp"
+                    app:drawableStartCompat="@drawable/ic_person"
                     android:textColor="@color/white" />
 
                 <!-- Username -->

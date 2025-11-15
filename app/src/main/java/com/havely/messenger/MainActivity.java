@@ -23,7 +23,8 @@ public class MainActivity extends Activity {
     private SharedPreferences prefs;
 
     private float x1, x2;
-    static final int MIN_DISTANCE = 150;
+    static final int MIN_DISTANCE = 100;
+    static final int EDGE_SIZE = 100; // Размер области для свайпа с края
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +94,10 @@ public class MainActivity extends Activity {
     }
     
     private void setupDrawer() {
-        // Настройка свайпа для открытия меню
+        // Включаем свайп с края
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        
+        // Настройка свайпа для открытия меню с левого края
         drawerLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -106,30 +110,17 @@ public class MainActivity extends Activity {
                         float deltaX = x2 - x1;
                         
                         // Свайп справа налево для открытия меню
-                        if (Math.abs(deltaX) > MIN_DISTANCE && deltaX < 0) {
+                        // Только если начали свайп с левого края экрана
+                        if (x1 < EDGE_SIZE && Math.abs(deltaX) > MIN_DISTANCE && deltaX > 0) {
                             if (!drawerLayout.isDrawerOpen(Gravity.START)) {
                                 drawerLayout.openDrawer(Gravity.START);
+                                return true;
                             }
                         }
                         break;
                 }
                 return false;
             }
-        });
-        
-        // Закрытие меню при клике вне его
-        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {}
-            
-            @Override
-            public void onDrawerOpened(View drawerView) {}
-            
-            @Override
-            public void onDrawerClosed(View drawerView) {}
-            
-            @Override
-            public void onDrawerStateChanged(int newState) {}
         });
     }
     
