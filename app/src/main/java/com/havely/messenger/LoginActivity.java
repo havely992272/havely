@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,7 +75,7 @@ public class LoginActivity extends Activity {
     private void toggleThemeWithAnimation() {
         // Плавное исчезновение
         AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
-        fadeOut.setDuration(200);
+        fadeOut.setDuration(300);
         
         View rootView = findViewById(android.R.id.content);
         rootView.startAnimation(fadeOut);
@@ -95,11 +96,6 @@ public class LoginActivity extends Activity {
                 
                 // Перезагружаем активность
                 recreate();
-                
-                // Плавное появление
-                AlphaAnimation fadeIn = new AlphaAnimation(0.0f, 1.0f);
-                fadeIn.setDuration(200);
-                rootView.startAnimation(fadeIn);
             }
             
             @Override
