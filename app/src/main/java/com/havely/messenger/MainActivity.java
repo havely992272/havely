@@ -126,25 +126,24 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
     @Override
     public void onMessageReceived(String message) {
         Log.d(TAG, "Received: " + message);
-        try {
-            // Парсим JSON сообщение
-            org.json.JSONObject json = new org.json.JSONObject(message);
-            String type = json.optString("type");
-            
-            if ("message".equals(type)) {
-                String content = json.optString("content");
-                addMessage("Echo", content, "#2D004D"); // Сообщения от сервера тёмные
-            }
-        } catch (Exception e) {
-            // Если не JSON, показываем как есть
-            addMessage("Server", message, "#2D004D");
-        }
+        runOnUiThread(() -> {
+            addMessage("Server", message, "#2D004D"); // Сообщения от сервера тёмные
+        });
     }
     
     @Override
     public void onDisconnected() {
         runOnUiThread(() -> {
             addMessage("System", "❌ Соединение разорвано", "#CF6679");
+        });
+    }
+    
+    @Override
+    public void onError(String error) {
+        Log.e(TAG, "WebSocket error: " + error);
+        runOnUiThread(() -> {
+            addMessage("System", "💥 Ошибка: " + error, "#CF6679");
+            Toast.makeText(this, "Ошибка подключения: " + error, Toast.LENGTH_LONG).show();
         });
     }
     
