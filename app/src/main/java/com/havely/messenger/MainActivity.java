@@ -3,6 +3,7 @@ package com.havely.messenger;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,7 +14,7 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
 
     private EditText usernameInput, messageInput;
     private Button startButton, sendButton;
-    private LinearLayout chatContainer;
+    private LinearLayout chatContainer, messageInputLayout;
     private WebSocketClient webSocketClient;
     private String currentUsername = "";
     private static final String TAG = "Havely";
@@ -33,11 +34,7 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
         messageInput = findViewById(R.id.messageInput);
         sendButton = findViewById(R.id.sendButton);
         chatContainer = findViewById(R.id.chatContainer);
-        
-        // Сначала скрываем элементы чата
-        messageInput.setVisibility(android.view.View.GONE);
-        sendButton.setVisibility(android.view.View.GONE);
-        chatContainer.setVisibility(android.view.View.GONE);
+        messageInputLayout = findViewById(R.id.messageInputLayout);
     }
     
     private void setupClickListeners() {
@@ -73,17 +70,21 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
     private void sendRealMessage(String message) {
         if (webSocketClient != null) {
             webSocketClient.sendMessage(message);
-            addMessage(currentUsername, message, "#9D4EDD"); // Свои сообщения фиолетовые
+            addMessage(currentUsername, message, "#9D4EDD");
+        } else {
+            Toast.makeText(this, "Нет подключения к серверу", Toast.LENGTH_SHORT).show();
         }
     }
     
     private void showChatInterface() {
         runOnUiThread(() -> {
-            usernameInput.setVisibility(android.view.View.GONE);
-            startButton.setVisibility(android.view.View.GONE);
-            messageInput.setVisibility(android.view.View.VISIBLE);
-            sendButton.setVisibility(android.view.View.VISIBLE);
-            chatContainer.setVisibility(android.view.View.VISIBLE);
+            // Скрываем элементы регистрации
+            usernameInput.setVisibility(View.GONE);
+            startButton.setVisibility(View.GONE);
+            
+            // Показываем элементы чата
+            chatContainer.setVisibility(View.VISIBLE);
+            messageInputLayout.setVisibility(View.VISIBLE);
         });
     }
     
@@ -94,13 +95,12 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
             msgView.setTextColor(android.graphics.Color.WHITE);
             msgView.setPadding(16, 12, 16, 12);
             msgView.setBackgroundColor(android.graphics.Color.parseColor(color));
-            msgView.setLayoutParams(new LinearLayout.LayoutParams(
+            
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-            ));
-            
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) msgView.getLayoutParams();
-            params.setMargins(16, 8, 16, 8);
+            );
+            params.setMargins(0, 4, 0, 4);
             msgView.setLayoutParams(params);
             
             chatContainer.addView(msgView);
@@ -119,7 +119,7 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
         runOnUiThread(() -> {
             showChatInterface();
             addMessage("System", "✅ Подключено к Havely! Можно общаться!", "#00E676");
-            addMessage("System", "💬 Отправляйте сообщения - они идут через реальный WebSocket!", "#4A0080");
+            Toast.makeText(this, "Подключено к серверу!", Toast.LENGTH_SHORT).show();
         });
     }
     
@@ -127,7 +127,7 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
     public void onMessageReceived(String message) {
         Log.d(TAG, "Received: " + message);
         runOnUiThread(() -> {
-            addMessage("Server", message, "#2D004D"); // Сообщения от сервера тёмные
+            addMessage("Server", message, "#2D004D");
         });
     }
     
@@ -143,7 +143,7 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
         Log.e(TAG, "WebSocket error: " + error);
         runOnUiThread(() -> {
             addMessage("System", "💥 Ошибка: " + error, "#CF6679");
-            Toast.makeText(this, "Ошибка подключения: " + error, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Ошибка: " + error, Toast.LENGTH_LONG).show();
         });
     }
     

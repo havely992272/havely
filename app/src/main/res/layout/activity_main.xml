@@ -7,39 +7,124 @@
     android:padding="24dp"
     android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🔒 Havely"
-        android:textColor="#FFFFFF"
-        android:textSize="32sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Анонимный. Безопасный. Свободный."
-        android:textColor="#BB86FC"
-        android:textSize="14sp" />
-
-    <EditText
-        android:id="@+id/usernameInput"
+    <!-- Header -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="Придумай никнейм"
-        android:maxLines="1"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#BB86FC" />
+        android:background="#4A0080"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
 
-    <Button
-        android:id="@+id/startButton"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔒 Havely"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Анонимный. Безопасный. Свободный."
+            android:textColor="#BB86FC"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!-- Login Form -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="НАЧАТЬ"
-        android:backgroundTint="#BB86FC"
-        android:textColor="#000000" />
+        android:background="#1A0029"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Создай анонимный аккаунт"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/usernameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Придумай никнейм"
+            android:maxLines="1"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#BB86FC"
+            android:backgroundTint="#BB86FC" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="НАЧАТЬ АНОНИМНОЕ ОБЩЕНИЕ"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#BB86FC"
+            android:textColor="#000000" />
+
+        <!-- Chat Container (изначально скрыт) -->
+        <LinearLayout
+            android:id="@+id/chatContainer"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:background="#2D004D"
+            android:padding="8dp"
+            android:visibility="gone" />
+
+        <!-- Message Input (изначально скрыт) -->
+        <LinearLayout
+            android:id="@+id/messageInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/messageInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Введите сообщение..."
+                android:maxLines="3"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BB86FC"
+                android:backgroundTint="#BB86FC" />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="📤"
+                android:backgroundTint="#BB86FC"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="🔐 Сквозное шифрование\n👻 Без регистрации\n⚡ Автоудаление через 3 дня"
+            android:textColor="#BB86FC"
+            android:textSize="12sp" />
+
+    </LinearLayout>
 
 </LinearLayout>
