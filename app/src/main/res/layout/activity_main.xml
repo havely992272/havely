@@ -7,30 +7,115 @@
     android:padding="24dp"
     android:gravity="center">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🔒 Havely Messenger"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/usernameInput"
+    <!-- Header -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="Enter username"
-        android:textColor="@color/white"
-        android:textColorHint="@color/havely_secondary" />
+        android:background="@color/havely_primary"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
 
-    <Button
-        android:id="@+id/startButton"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔒 Havely"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Анонимный. Безопасный. Свободный."
+            android:textColor="@color/havely_secondary"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <!-- Login Form -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="START CHAT"
-        android:backgroundTint="@color/havely_primary"
-        android:textColor="@color/white" />
+        android:background="@color/havely_surface"
+        android:orientation="vertical"
+        android:padding="32dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Создай анонимный аккаунт"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/usernameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="Придумай никнейм"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textColorHint="@color/havely_secondary"
+            android:backgroundTint="@color/havely_secondary" />
+
+        <Button
+            android:id="@+id/startButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="НАЧАТЬ АНОНИМНОЕ ОБЩЕНИЕ"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/havely_secondary"
+            android:textColor="@color/black" />
+
+        <!-- Chat Container -->
+        <LinearLayout
+            android:id="@+id/chatContainer"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:background="@color/havely_primary_dark"
+            android:padding="8dp"
+            android:visibility="gone" />
+
+        <!-- Message Input -->
+        <LinearLayout
+            android:id="@+id/messageInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/messageInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Введите сообщение..."
+                android:maxLines="3"
+                android:textColor="@color/white"
+                android:textColorHint="@color/havely_secondary"
+                android:backgroundTint="@color/havely_secondary" />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="📤"
+                android:backgroundTint="@color/havely_accent"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
