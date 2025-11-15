@@ -3,7 +3,5 @@
         <item name="colorPrimary">@color/havely_primary</item>
         <item name="colorPrimaryDark">@color/havely_primary_dark</item>
         <item name="colorAccent">@color/havely_accent</item>
-        <item name="android:statusBarColor">@color/havely_primary_dark</item>
-        <item name="android:windowBackground">@color/havely_background</item>
     </style>
 </resources>
