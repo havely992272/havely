@@ -95,14 +95,15 @@
     </LinearLayout>
 
     <!-- Floating Action Button -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/fabCreateChat"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_create_chat"
-        android:backgroundTint="@color/telegram_accent"
-        app:tint="@color/white" />
+        android:text="✏️"
+        android:textSize="20sp"
+        android:background="@drawable/fab_background"
+        android:textColor="@color/white" />
 
 </LinearLayout>
