@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Havely Colors -->
+    <color name="havely_primary">#4A0080</color>
+    <color name="havely_primary_dark">#3700B3</color>
+    <color name="havely_accent">#BB86FC</color>
+    <color name="havely_background">#0A0014</color>
+    <color name="havely_surface">#1A0029</color>
 </resources>
