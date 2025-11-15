@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,13 +18,13 @@ public class MainActivity extends Activity {
 
     private RecyclerView chatsRecyclerView;
     private LinearLayout emptyState;
-    private Button menuButton, searchButton;
+    private ImageButton menuButton, searchButton, fabCreateChat;
     private DrawerLayout drawerLayout;
     private SharedPreferences prefs;
 
     private float x1, x2;
     static final int MIN_DISTANCE = 100;
-    static final int EDGE_SIZE = 100; // Размер области для свайпа с края
+    static final int EDGE_SIZE = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +45,10 @@ public class MainActivity extends Activity {
         emptyState = findViewById(R.id.emptyState);
         menuButton = findViewById(R.id.menuButton);
         searchButton = findViewById(R.id.searchButton);
+        fabCreateChat = findViewById(R.id.fabCreateChat);
         
         chatsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         
-        // Устанавливаем имя пользователя в меню
         String username = prefs.getString("username", "Пользователь");
         TextView drawerUsername = findViewById(R.id.drawerUsername);
         drawerUsername.setText(username);
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
             // TODO: Открыть поиск
         });
         
-        findViewById(R.id.fabCreateChat).setOnClickListener(v -> {
+        fabCreateChat.setOnClickListener(v -> {
             // TODO: Создать новый чат
         });
         
@@ -94,10 +94,8 @@ public class MainActivity extends Activity {
     }
     
     private void setupDrawer() {
-        // Включаем свайп с края
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         
-        // Настройка свайпа для открытия меню с левого края
         drawerLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -109,8 +107,6 @@ public class MainActivity extends Activity {
                         x2 = event.getX();
                         float deltaX = x2 - x1;
                         
-                        // Свайп справа налево для открытия меню
-                        // Только если начали свайп с левого края экрана
                         if (x1 < EDGE_SIZE && Math.abs(deltaX) > MIN_DISTANCE && deltaX > 0) {
                             if (!drawerLayout.isDrawerOpen(Gravity.START)) {
                                 drawerLayout.openDrawer(Gravity.START);

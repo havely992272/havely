@@ -21,17 +21,16 @@
             android:paddingHorizontal="8dp"
             android:gravity="center_vertical">
 
-            <!-- Menu Button (сдвинут влево) -->
-            <Button
+            <!-- Menu Button -->
+            <ImageButton
                 android:id="@+id/menuButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                app:drawableStartCompat="@drawable/ic_menu"
-                android:textColor="@color/app_text_primary"
-                android:textSize="24sp" />
+                android:src="@drawable/ic_menu"
+                android:contentDescription="Меню"
+                android:tint="@color/app_text_primary" />
 
             <!-- Title -->
             <TextView
@@ -44,17 +43,16 @@
                 android:textStyle="bold"
                 android:gravity="center" />
 
-            <!-- Search Button (без эмодзи) -->
-            <Button
+            <!-- Search Button -->
+            <ImageButton
                 android:id="@+id/searchButton"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:layout_marginEnd="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                app:drawableStartCompat="@drawable/ic_search"
-                android:textColor="@color/app_text_primary"
-                android:textSize="24sp" />
+                android:src="@drawable/ic_search"
+                android:contentDescription="Поиск"
+                android:tint="@color/app_text_primary" />
 
         </LinearLayout>
 
@@ -77,11 +75,11 @@
             android:padding="40dp"
             android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:drawableStartCompat="@drawable/ic_chat"
-                android:textColor="@color/app_text_primary"
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_chat"
+                android:tint="@color/app_text_primary"
                 android:layout_marginBottom="24dp" />
 
             <TextView
@@ -103,16 +101,17 @@
 
         </LinearLayout>
 
-        <!-- Floating Action Button (без эмодзи) -->
-        <Button
+        <!-- Floating Action Button -->
+        <ImageButton
             android:id="@+id/fabCreateChat"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            app:drawableStartCompat="@drawable/ic_edit"
+            android:src="@drawable/ic_edit"
             android:background="@drawable/fab_background"
-            android:textColor="@color/white" />
+            android:contentDescription="Создать чат"
+            android:tint="@color/white" />
 
     </LinearLayout>
 
@@ -141,13 +140,13 @@
                 android:gravity="center_vertical">
 
                 <!-- Avatar -->
-                <TextView
+                <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:gravity="center"
+                    android:src="@drawable/ic_person"
                     android:background="@drawable/avatar_background"
-                    app:drawableStartCompat="@drawable/ic_person"
-                    android:textColor="@color/white" />
+                    android:padding="16dp"
+                    android:tint="@color/white" />
 
                 <!-- Username -->
                 <TextView
@@ -173,64 +172,108 @@
             android:paddingTop="16dp">
 
             <!-- New Group -->
-            <Button
+            <LinearLayout
                 android:id="@+id/menuNewGroup"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="?attr/selectableItemBackground"
-                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:text="Новая группа"
-                android:textColor="@color/app_text_primary"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                android:drawablePadding="16dp"
-                app:drawableStartCompat="@drawable/ic_group" />
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_group"
+                    android:tint="@color/app_text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Новая группа"
+                    android:textColor="@color/app_text_primary"
+                    android:textSize="16sp"
+                    android:layout_marginStart="16dp" />
+
+            </LinearLayout>
 
             <!-- Secret Chats -->
-            <Button
+            <LinearLayout
                 android:id="@+id/menuSecretChats"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="?attr/selectableItemBackground"
-                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:text="Секретные чаты"
-                android:textColor="@color/app_text_primary"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                android:drawablePadding="16dp"
-                app:drawableStartCompat="@drawable/ic_lock" />
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_lock"
+                    android:tint="@color/app_text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Секретные чаты"
+                    android:textColor="@color/app_text_primary"
+                    android:textSize="16sp"
+                    android:layout_marginStart="16dp" />
+
+            </LinearLayout>
 
             <!-- Settings -->
-            <Button
+            <LinearLayout
                 android:id="@+id/menuSettings"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="?attr/selectableItemBackground"
-                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:text="Настройки"
-                android:textColor="@color/app_text_primary"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                android:drawablePadding="16dp"
-                app:drawableStartCompat="@drawable/ic_settings" />
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_settings"
+                    android:tint="@color/app_text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Настройки"
+                    android:textColor="@color/app_text_primary"
+                    android:textSize="16sp"
+                    android:layout_marginStart="16dp" />
+
+            </LinearLayout>
 
             <!-- Contacts -->
-            <Button
+            <LinearLayout
                 android:id="@+id/menuContacts"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:background="?attr/selectableItemBackground"
-                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:text="Контакты"
-                android:textColor="@color/app_text_primary"
-                android:textSize="16sp"
-                android:textStyle="normal"
-                android:drawablePadding="16dp"
-                app:drawableStartCompat="@drawable/ic_contacts" />
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_contacts"
+                    android:tint="@color/app_text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Контакты"
+                    android:textColor="@color/app_text_primary"
+                    android:textSize="16sp"
+                    android:layout_marginStart="16dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
