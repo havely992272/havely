@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Premium Purple Palette -->
+    <color name="premium_deep_night">#0A001A</color>
+    <color name="premium_dark_purple">#1A0033</color>
+    <color name="premium_royal_purple">#4A0080</color>
+    <color name="premium_violet">#7B1FA2</color>
+    <color name="premium_lavender">#9C27B0</color>
+    <color name="premium_amethyst">#BB86FC</color>
+    <color name="premium_electric_purple">#CF52FF</color>
+    <color name="premium_cyan">#00E5FF</color>
+    <color name="premium_emerald">#00E676</color>
+    <color name="premium_gold">#FFD700</color>
     
-    <!-- Havely Colors -->
-    <color name="havely_primary">#4A0080</color>
-    <color name="havely_primary_dark">#2D004D</color>
-    <color name="havely_accent">#9D4EDD</color>
-    <color name="havely_secondary">#BB86FC</color>
-    <color name="havely_background">#0A0014</color>
-    <color name="havely_surface">#1A0029</color>
-    <color name="havely_text_secondary">#BB86FC</color>
+    <!-- Gradients -->
+    <color name="gradient_start">#4A0080</color>
+    <color name="gradient_end">#7B1FA2</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#E0E0E0</color>
+    <color name="text_hint">#B3B3B3</color>
 </resources>

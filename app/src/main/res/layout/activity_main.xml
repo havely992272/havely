@@ -1,121 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/havely_background"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:background="@color/premium_deep_night"
+    android:fillViewport="true">
 
-    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/havely_primary"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center"
-        android:layout_marginBottom="32dp">
+        android:padding="0dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🔒 Havely"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Анонимный. Безопасный. Свободный."
-            android:textColor="@color/havely_secondary"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <!-- Login Form -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/havely_surface"
-        android:orientation="vertical"
-        android:padding="32dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Создай анонимный аккаунт"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/usernameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:hint="Придумай никнейм"
-            android:maxLines="1"
-            android:textColor="@color/white"
-            android:textColorHint="@color/havely_secondary"
-            android:backgroundTint="@color/havely_secondary" />
-
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="НАЧАТЬ АНОНИМНОЕ ОБЩЕНИЕ"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/havely_secondary"
-            android:textColor="@color/black" />
-
-        <!-- Chat Container -->
+        <!-- Premium Header with Animated Background -->
         <LinearLayout
-            android:id="@+id/chatContainer"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="280dp"
             android:orientation="vertical"
-            android:background="@color/havely_primary_dark"
-            android:padding="8dp"
-            android:visibility="gone" />
+            android:background="@drawable/premium_header_background"
+            android:gravity="center"
+            android:padding="24dp">
 
-        <!-- Message Input -->
-        <LinearLayout
-            android:id="@+id/messageInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="16dp"
-            android:visibility="gone">
+            <!-- App Icon with Glow -->
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/icon_glow_background"
+                android:gravity="center"
+                android:elevation="16dp">
 
-            <EditText
-                android:id="@+id/messageInput"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Введите сообщение..."
-                android:maxLines="3"
-                android:textColor="@color/white"
-                android:textColorHint="@color/havely_secondary"
-                android:backgroundTint="@color/havely_secondary" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔒"
+                    android:textSize="36sp" />
 
-            <Button
-                android:id="@+id/sendButton"
+            </LinearLayout>
+
+            <!-- App Name with Gradient -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="📤"
-                android:backgroundTint="@color/havely_accent"
-                android:textColor="@color/white" />
+                android:text="HAVELY"
+                android:textColor="@color/text_primary"
+                android:textSize="42sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginTop="16dp"
+                android:textAllCaps="true" />
+
+            <!-- Premium Tagline -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Премиум приватный мессенджер"
+                android:textColor="@color/premium_amethyst"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:letterSpacing="0.05" />
+
+            <!-- Security Badge -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/security_badge_background"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔐"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Military-Grade Encryption"
+                    android:textColor="@color/premium_emerald"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
+        <!-- Premium Registration Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/premium_card_background"
+            android:layout_margin="24dp"
+            android:padding="32dp"
+            android:elevation="24dp"
+            android:outlineProvider="bounds">
+
+            <!-- Card Header -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Создайте анонимный аккаунт"
+                android:textColor="@color/text_primary"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Присоединяйтесь к эксклюзивному сообществу"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
+
+            <!-- Username Input with Premium Style -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                style="@style/PremiumTextInputLayout"
+
+                app:boxBackgroundColor="@color/premium_dark_purple"
+                app:boxCornerRadius="16dp"
+                app:hintTextColor="@color/premium_amethyst"
+                app:boxStrokeColor="@color/premium_amethyst"
+                app:endIconTint="@color/premium_amethyst">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ваш уникальный никнейм"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/premium_amethyst"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:padding="20dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Premium Features List -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🎁 Премиум возможности:"
+                    android:textColor="@color/premium_gold"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Feature 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✅"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Полная анонимность - без телефона и почты"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:layout_marginStart="12dp" />
+
+                </LinearLayout>
+
+                <!-- Feature 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✅"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Сквозное шифрование военного уровня"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:layout_marginStart="12dp" />
+
+                </LinearLayout>
+
+                <!-- Feature 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="✅"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Автоудаление сообщений через 24 часа"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:layout_marginStart="12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Premium Start Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/startButton"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:text="НАЧАТЬ ПРИВАТНОЕ ОБЩЕНИЕ"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:backgroundTint="@color/premium_amethyst"
+                android:textColor="@color/premium_deep_night"
+                android:elevation="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                app:cornerRadius="16dp"
+                style="@style/Widget.Material3.Button.ElevatedButton" />
+
+            <!-- Premium Footer -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="💎 Присоединяйтесь к 1% избранных"
+                android:textColor="@color/premium_cyan"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Bottom Security Note -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔒 Ваши данные защищены технологиями уровня банков"
+            android:textColor="@color/text_hint"
+            android:textSize="11sp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"
+            android:padding="16dp" />
+
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

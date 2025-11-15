@@ -1,0 +1,11 @@
+<resources>
+    <style name="PremiumTextInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/premium_dark_purple</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="hintTextColor">@color/premium_amethyst</item>
+        <item name="boxStrokeColor">@color/premium_amethyst</item>
+    </style>
+</resources>
