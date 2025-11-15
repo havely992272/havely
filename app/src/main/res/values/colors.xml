@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Basic Colors -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    
     <!-- Old Havely Colors (for compatibility) -->
     <color name="havely_primary">#4A0080</color>
     <color name="havely_primary_dark">#2D004D</color>
