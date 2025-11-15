@@ -2,14 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="@color/havely_background"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔒 Havely Messenger"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/usernameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Havely Messenger"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:padding="16dp" />
+        android:layout_marginTop="32dp"
+        android:hint="Enter username"
+        android:textColor="@color/white"
+        android:textColorHint="@color/havely_secondary" />
+
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="START CHAT"
+        android:backgroundTint="@color/havely_primary"
+        android:textColor="@color/white" />
 
 </LinearLayout>
