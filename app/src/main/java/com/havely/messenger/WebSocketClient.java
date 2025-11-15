@@ -11,7 +11,7 @@ public class WebSocketClient {
     private MessageListener messageListener;
     
     // ТВОЙ IP
-    private String serverUrl = "ws://100.84.189.163:8080";
+    private String serverUrl = "ws://141.8.192.25:8080";
     
     public interface MessageListener {
         void onMessageReceived(String message);
