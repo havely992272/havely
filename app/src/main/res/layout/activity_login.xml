@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/telegram_background"
+    android:orientation="vertical"
+    android:padding="40dp"
+    android:gravity="center">
+
+    <!-- App Icon -->
+    <TextView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:background="@drawable/telegram_icon_background"
+        android:text="✈️"
+        android:textSize="36sp"
+        android:layout_marginBottom="40dp" />
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Havely"
+        android:textColor="@color/telegram_text_primary"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Быстрый и безопасный мессенджер"
+        android:textColor="@color/telegram_text_secondary"
+        android:textSize="16sp"
+        android:layout_marginBottom="60dp" />
+
+    <!-- Username Input -->
+    <EditText
+        android:id="@+id/usernameInput"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:hint="Введите ваш никнейм"
+        android:textColor="@color/telegram_text_primary"
+        android:textColorHint="@color/telegram_text_secondary"
+        android:background="@drawable/telegram_input_background"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Start Button -->
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Начать общение"
+        android:textColor="@color/white"
+        android:background="@drawable/telegram_button_background"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Footer -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Создавая аккаунт, вы принимаете условия использования"
+        android:textColor="@color/telegram_text_secondary"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_marginTop="40dp" />
+
+</LinearLayout>

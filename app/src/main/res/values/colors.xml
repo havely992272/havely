@@ -1,35 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Telegram Colors -->
+    <color name="telegram_background">#0E1621</color>
+    <color name="telegram_surface">#17212B</color>
+    <color name="telegram_primary">#2B5278</color>
+    <color name="telegram_accent">#5288C1</color>
+    <color name="telegram_text_primary">#FFFFFF</color>
+    <color name="telegram_text_secondary">#7F91A8</color>
+    <color name="telegram_green">#00BFA5</color>
+    
     <!-- Basic Colors -->
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
-    
-    <!-- Old Havely Colors (for compatibility) -->
-    <color name="havely_primary">#4A0080</color>
-    <color name="havely_primary_dark">#2D004D</color>
-    <color name="havely_accent">#9D4EDD</color>
-    <color name="havely_secondary">#BB86FC</color>
-    <color name="havely_background">#0A0014</color>
-    <color name="havely_surface">#1A0029</color>
-    
-    <!-- Premium Purple Palette -->
-    <color name="premium_deep_night">#0A001A</color>
-    <color name="premium_dark_purple">#1A0033</color>
-    <color name="premium_royal_purple">#4A0080</color>
-    <color name="premium_violet">#7B1FA2</color>
-    <color name="premium_lavender">#9C27B0</color>
-    <color name="premium_amethyst">#BB86FC</color>
-    <color name="premium_electric_purple">#CF52FF</color>
-    <color name="premium_cyan">#00E5FF</color>
-    <color name="premium_emerald">#00E676</color>
-    <color name="premium_gold">#FFD700</color>
-    
-    <!-- Gradients -->
-    <color name="gradient_start">#4A0080</color>
-    <color name="gradient_end">#7B1FA2</color>
-    
-    <!-- Text Colors -->
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#E0E0E0</color>
-    <color name="text_hint">#B3B3B3</color>
 </resources>
