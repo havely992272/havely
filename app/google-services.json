@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "795865300684",
+    "project_id": "havely-messenger",
+    "storage_bucket": "havely-messenger.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:795865300684:android:221ddf76f9111f0daa8c69",
+        "android_client_info": {
+          "package_name": "com.havely.messenger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcRgqISmNE80gG9MiNBQGBQPb6IMy7cfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
