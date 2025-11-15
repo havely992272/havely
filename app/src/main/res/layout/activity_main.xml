@@ -1,109 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
-    android:orientation="vertical">
+    android:background="@color/app_background">
 
-    <!-- Action Bar -->
+    <!-- Main Content -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/app_surface"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <!-- Menu Button -->
-        <Button
-            android:id="@+id/menuButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:gravity="center"
-            android:text="☰"
-            android:textColor="@color/app_text_primary"
-            android:textSize="24sp" />
+        <!-- Action Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/app_surface"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
 
-        <!-- Title -->
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            <!-- Menu Button (объемнее) -->
+            <Button
+                android:id="@+id/menuButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:text="☰"
+                android:textColor="@color/app_text_primary"
+                android:textSize="28sp" />
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Чаты"
+                android:textColor="@color/app_text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <!-- Search Button -->
+            <Button
+                android:id="@+id/searchButton"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:text="🔍"
+                android:textColor="@color/app_text_primary"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+        <!-- Chats List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Чаты"
-            android:textColor="@color/app_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center" />
+            android:background="@color/app_background" />
 
-        <!-- Search Button -->
-        <Button
-            android:id="@+id/searchButton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
+        <!-- Empty State -->
+        <LinearLayout
+            android:id="@+id/emptyState"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
             android:gravity="center"
-            android:text="🔍"
-            android:textColor="@color/app_text_primary"
-            android:textSize="20sp" />
+            android:padding="40dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💬"
+                android:textSize="64sp"
+                android:textColor="@color/app_text_primary"
+                android:layout_marginBottom="24dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="У вас пока нет чатов"
+                android:textColor="@color/app_text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Начните общение, создав новый чат"
+                android:textColor="@color/app_text_secondary"
+                android:textSize="14sp"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+        <!-- Floating Action Button -->
+        <Button
+            android:id="@+id/fabCreateChat"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="16dp"
+            android:text="✏️"
+            android:textSize="20sp"
+            android:background="@drawable/fab_background"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
-    <!-- Chats List -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/app_background" />
-
-    <!-- Empty State -->
+    <!-- Navigation Drawer -->
     <LinearLayout
-        android:id="@+id/emptyState"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="40dp"
-        android:visibility="gone">
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/app_surface"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="💬"
-            android:textSize="64sp"
-            android:layout_marginBottom="24dp" />
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/app_accent"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="bottom">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="У вас пока нет чатов"
-            android:textColor="@color/app_text_primary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            <!-- Avatar and Username -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+                <!-- Avatar -->
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:background="@drawable/avatar_background"
+                    android:text="👤"
+                    android:textSize="28sp"
+                    android:textColor="@color/white" />
+
+                <!-- Username -->
+                <TextView
+                    android:id="@+id/drawerUsername"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Username"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Menu Items -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Начните общение, создав новый чат"
-            android:textColor="@color/app_text_secondary"
-            android:textSize="14sp"
-            android:gravity="center" />
+            android:orientation="vertical"
+            android:paddingTop="16dp">
+
+            <!-- New Group -->
+            <Button
+                android:id="@+id/menuNewGroup"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="24dp"
+                android:text="Новая группа"
+                android:textColor="@color/app_text_primary"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:drawablePadding="16dp"
+                app:drawableStartCompat="@drawable/ic_group" />
+
+            <!-- Secret Chats -->
+            <Button
+                android:id="@+id/menuSecretChats"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="24dp"
+                android:text="Секретные чаты"
+                android:textColor="@color/app_text_primary"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:drawablePadding="16dp"
+                app:drawableStartCompat="@drawable/ic_lock" />
+
+            <!-- Settings -->
+            <Button
+                android:id="@+id/menuSettings"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="24dp"
+                android:text="Настройки"
+                android:textColor="@color/app_text_primary"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:drawablePadding="16dp"
+                app:drawableStartCompat="@drawable/ic_settings" />
+
+            <!-- Contacts -->
+            <Button
+                android:id="@+id/menuContacts"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:paddingStart="24dp"
+                android:text="Контакты"
+                android:textColor="@color/app_text_primary"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:drawablePadding="16dp"
+                app:drawableStartCompat="@drawable/ic_contacts" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Floating Action Button -->
-    <Button
-        android:id="@+id/fabCreateChat"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16dp"
-        android:text="✏️"
-        android:textSize="20sp"
-        android:background="@drawable/fab_background"
-        android:textColor="@color/white" />
-
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
