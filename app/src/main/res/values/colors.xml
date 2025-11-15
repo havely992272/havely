@@ -16,15 +16,15 @@
     <color name="black_text_primary">#FFFFFF</color>
     <color name="black_text_secondary">#AAAAAA</color>
     
-    <!-- Current Theme Colors (will be set dynamically) -->
-    <color name="app_background">#FFFFFF</color>
-    <color name="app_surface">#F5F5F5</color>
-    <color name="app_primary">#000000</color>
-    <color name="app_accent">#3390FF</color>
-    <color name="app_text_primary">#000000</color>
-    <color name="app_text_secondary">#666666</color>
-    
     <!-- Basic Colors -->
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+    
+    <!-- Old Colors for Compatibility -->
+    <color name="havely_primary">#000000</color>
+    <color name="havely_primary_dark">#000000</color>
+    <color name="havely_accent">#3390FF</color>
+    <color name="havely_secondary">#666666</color>
+    <color name="havely_background">#FFFFFF</color>
+    <color name="havely_surface">#F5F5F5</color>
 </resources>
