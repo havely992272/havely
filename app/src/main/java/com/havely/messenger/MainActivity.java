@@ -15,9 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -46,11 +43,6 @@ public class MainActivity extends Activity {
         
         initializeViews();
         setupClickListeners();
-        
-        // Проверяем авторизацию
-        if (mAuth.getCurrentUser() != null) {
-            loadUserData();
-        }
     }
     
     private void initializeViews() {
@@ -97,27 +89,9 @@ public class MainActivity extends Activity {
                         addMessage("System", "✅ Анонимный аккаунт создан!", "#00E676");
                     }
                 } else {
-                    addMessage("System", "❌ Ошибка: " + task.getException().getMessage(), "#CF6679");
+                    addMessage("System", "❌ Ошибка аутентификации", "#CF6679");
                 }
             });
-    }
-    
-    private void loadUserData() {
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            currentUserId = user.getUid();
-            // Загружаем данные пользователя из Firestore
-            db.collection("users").document(currentUserId)
-                .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        currentUsername = documentSnapshot.getString("username");
-                        showChatInterface();
-                        setupMessagesListener();
-                        addMessage("System", "✅ С возвращением, " + currentUsername + "!", "#00E676");
-                    }
-                });
-        }
     }
     
     private void saveUserToFirestore(String username) {
@@ -128,9 +102,6 @@ public class MainActivity extends Activity {
         
         db.collection("users").document(currentUserId)
             .set(user)
-            .addOnSuccessListener(aVoid -> {
-                // Успешно сохранено
-            })
             .addOnFailureListener(e -> {
                 addMessage("System", "❌ Ошибка сохранения пользователя", "#CF6679");
             });
@@ -147,9 +118,6 @@ public class MainActivity extends Activity {
         
         db.collection("messages")
             .add(message)
-            .addOnSuccessListener(documentReference -> {
-                // Сообщение отправлено
-            })
             .addOnFailureListener(e -> {
                 addMessage("System", "❌ Ошибка отправки", "#CF6679");
             });
@@ -158,25 +126,19 @@ public class MainActivity extends Activity {
     private void setupMessagesListener() {
         messagesListener = db.collection("messages")
             .orderBy("timestamp", Query.Direction.ASCENDING)
-            .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                @Override
-                public void onEvent(QuerySnapshot querySnapshot, FirebaseFirestoreException error) {
-                    if (error != null) {
-                        addMessage("System", "❌ Ошибка загрузки сообщений", "#CF6679");
-                        return;
-                    }
-                    
-                    if (querySnapshot != null) {
-                        for (DocumentChange dc : querySnapshot.getDocumentChanges()) {
-                            if (dc.getType() == DocumentChange.Type.ADDED) {
-                                String username = dc.getDocument().getString("username");
-                                String text = dc.getDocument().getString("text");
-                                String userId = dc.getDocument().getString("userId");
-                                
-                                if (username != null && text != null) {
-                                    String color = userId.equals(currentUserId) ? "#9D4EDD" : "#4A0080";
-                                    addMessage(username, text, color);
-                                }
+            .addSnapshotListener((querySnapshot, error) -> {
+                if (error != null) return;
+                
+                if (querySnapshot != null) {
+                    for (DocumentChange dc : querySnapshot.getDocumentChanges()) {
+                        if (dc.getType() == DocumentChange.Type.ADDED) {
+                            String username = dc.getDocument().getString("username");
+                            String text = dc.getDocument().getString("text");
+                            String userId = dc.getDocument().getString("userId");
+                            
+                            if (username != null && text != null) {
+                                String color = userId.equals(currentUserId) ? "#9D4EDD" : "#4A0080";
+                                addMessage(username, text, color);
                             }
                         }
                     }
