@@ -2,74 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
+    android:background="#FF000000"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="40dp"
-    android:gravity="center">
+    android:padding="32dp">
 
-    <!-- App Icon -->
-    <TextView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:gravity="center"
-        android:background="@drawable/app_icon_background"
-        android:text="✈️"
-        android:textSize="36sp"
-        android:layout_marginBottom="40dp" />
-
-    <!-- Title -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Havely"
-        android:textColor="@color/app_text_primary"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Быстрый и безопасный мессенджер"
-        android:textColor="@color/app_text_secondary"
-        android:textSize="16sp"
-        android:layout_marginBottom="60dp" />
-
-    <!-- Username Input -->
     <EditText
         android:id="@+id/usernameInput"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FFFFFFFF"
         android:hint="Введите ваш никнейм"
-        android:textColor="@color/app_text_primary"
-        android:textColorHint="@color/app_text_secondary"
-        android:background="@drawable/app_input_background"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
         android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="16sp"
-        android:layout_marginBottom="24dp" />
+        android:padding="16dp"
+        android:textColor="#FFFFFFFF"
+        android:textColorHint="#80FFFFFF"
+        android:textSize="18sp" />
 
-    <!-- Start Button -->
     <Button
         android:id="@+id/startButton"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:text="Начать общение"
-        android:textColor="@color/white"
-        android:background="@drawable/app_button_background"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <!-- Footer -->
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Создавая аккаунт, вы принимаете условия использования"
-        android:textColor="@color/app_text_secondary"
-        android:textSize="12sp"
-        android:gravity="center"
-        android:layout_marginTop="40dp" />
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FF34A853"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="12dp"
+        android:text="Начать общение"
+        android:textColor="#FFFFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

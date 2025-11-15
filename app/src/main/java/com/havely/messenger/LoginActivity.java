@@ -45,7 +45,7 @@ public class LoginActivity extends Activity {
         db = FirebaseFirestore.getInstance();
         Log.d(TAG, "Firebase инициализирован");
         
-        usernameInput = findViewById(R.id.usernameEditText);
+        usernameInput = findViewById(R.id.usernameInput);
         startButton = findViewById(R.id.startButton);
         
         startButton.setOnClickListener(v -> {
