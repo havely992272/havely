@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Havely Brand Colors -->
+    <color name="havely_primary">#6A0DAD</color>
+    <color name="havely_primary_dark">#4A0080</color>
+    <color name="havely_primary_light">#9D4EDD</color>
+    <color name="havely_accent">#FF6BFF</color>
+    <color name="havely_accent_dark">#E055E0</color>
+    <color name="havely_background">#0A0014</color>
+    <color name="havely_surface">#1A0029</color>
+    <color name="havely_card">#2D004D</color>
+    <color name="havely_text_primary">#FFFFFF</color>
+    <color name="havely_text_secondary">#BB86FC</color>
+    <color name="havely_success">#00E676</color>
+    <color name="havely_warning">#FF9100</color>
+    <color name="havely_error">#CF6679</color>
+    
+    <!-- Message Colors -->
+    <color name="message_sent">#9D4EDD</color>
+    <color name="message_received">#2D004D</color>
+    <color name="message_encrypted">#00E676</color>
+</resources>
