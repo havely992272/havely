@@ -2,19 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_background"
+    android:background="@color/app_background"
     android:orientation="vertical">
 
     <!-- Action Bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/white_surface"
+        android:background="@color/app_surface"
         android:orientation="horizontal"
         android:paddingHorizontal="16dp"
         android:gravity="center_vertical">
 
-        <!-- Menu Button (увеличен) -->
+        <!-- Menu Button -->
         <Button
             android:id="@+id/menuButton"
             android:layout_width="48dp"
@@ -22,7 +22,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
             android:text="☰"
-            android:textColor="@color/white_text_primary"
+            android:textColor="@color/app_text_primary"
             android:textSize="24sp" />
 
         <!-- Title -->
@@ -31,12 +31,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Чаты"
-            android:textColor="@color/white_text_primary"
+            android:textColor="@color/app_text_primary"
             android:textSize="20sp"
             android:textStyle="bold"
             android:gravity="center" />
 
-        <!-- Search Button (увеличен, без зеркала) -->
+        <!-- Search Button -->
         <Button
             android:id="@+id/searchButton"
             android:layout_width="48dp"
@@ -44,7 +44,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
             android:text="🔍"
-            android:textColor="@color/white_text_primary"
+            android:textColor="@color/app_text_primary"
             android:textSize="20sp" />
 
     </LinearLayout>
@@ -55,7 +55,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/white_background" />
+        android:background="@color/app_background" />
 
     <!-- Empty State -->
     <LinearLayout
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="У вас пока нет чатов"
-            android:textColor="@color/white_text_primary"
+            android:textColor="@color/app_text_primary"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginBottom="8dp" />
@@ -88,13 +88,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Начните общение, создав новый чат"
-            android:textColor="@color/white_text_secondary"
+            android:textColor="@color/app_text_secondary"
             android:textSize="14sp"
             android:gravity="center" />
 
     </LinearLayout>
 
-    <!-- Floating Action Button (карандаш без цвета) -->
+    <!-- Floating Action Button -->
     <Button
         android:id="@+id/fabCreateChat"
         android:layout_width="56dp"
