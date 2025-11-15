@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/premium_deep_night"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:id="@+id/mainScrollView">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -209,7 +210,7 @@
                 <!-- Feature 3 -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="8dp">
 
@@ -224,30 +225,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Автоудаление сообщений через 24 часа"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="14sp"
-                        android:layout_marginStart="12dp" />
-
-                </LinearLayout>
-
-                <!-- Feature 4 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="👑"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Доступ к эксклюзивным чат-комнатам"
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp"
                         android:layout_marginStart="12dp" />
@@ -280,6 +257,52 @@
                 android:gravity="center"
                 android:layout_marginTop="16dp"
                 android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Chat Container (скрыт изначально) -->
+        <LinearLayout
+            android:id="@+id/chatContainer"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:orientation="vertical"
+            android:background="@color/premium_dark_purple"
+            android:padding="16dp"
+            android:layout_margin="24dp"
+            android:visibility="gone" />
+
+        <!-- Message Input Layout (скрыт изначально) -->
+        <LinearLayout
+            android:id="@+id/messageInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/premium_dark_purple"
+            android:padding="16dp"
+            android:layout_margin="24dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/messageInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Введите сообщение..."
+                android:maxLines="3"
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/premium_amethyst"
+                android:background="@drawable/edittext_premium_background"
+                android:padding="16dp" />
+
+            <Button
+                android:id="@+id/sendButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:text="⬆️"
+                android:background="@drawable/button_premium_background"
+                android:textColor="@color/premium_deep_night"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
