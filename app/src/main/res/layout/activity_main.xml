@@ -9,6 +9,7 @@
 
     <!-- Header -->
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/headerCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -77,14 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                app:boxBackgroundColor="@color/havely_card"
-                app:boxCornerRadiusBottomEnd="16dp"
-                app:boxCornerRadiusBottomStart="16dp"
-                app:boxCornerRadiusTopEnd="16dp"
-                app:boxCornerRadiusTopStart="16dp"
-                app:hintTextColor="@color/havely_text_secondary"
-                app:startIconDrawable="@drawable/ic_person"
-                app:startIconTint="@color/havely_accent">
+                app:hintTextColor="@color/havely_text_secondary">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/usernameInput"
@@ -107,10 +101,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/havely_accent"
-                app:cornerRadius="20dp"
-                app:icon="@drawable/ic_shield"
-                app:iconTint="@color/black"
-                app:rippleColor="@color/havely_primary_light" />
+                app:cornerRadius="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
