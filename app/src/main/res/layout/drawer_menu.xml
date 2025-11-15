@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="280dp"
+    android:layout_width="300dp"
     android:layout_height="match_parent"
+    android:layout_gravity="start"
     android:background="@color/app_surface"
     android:orientation="vertical">
 
     <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="180dp"
         android:background="@color/app_accent"
         android:orientation="vertical"
-        android:padding="20dp"
-        android:gravity="center_vertical">
+        android:padding="24dp"
+        android:gravity="bottom">
 
         <!-- Avatar and Username -->
         <LinearLayout
@@ -22,14 +23,13 @@
             android:gravity="center_vertical">
 
             <!-- Avatar -->
-            <TextView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:gravity="center"
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_person"
                 android:background="@drawable/avatar_background"
-                android:text="👤"
-                android:textSize="24sp"
-                android:textColor="@color/white" />
+                android:padding="16dp"
+                android:tint="@color/white" />
 
             <!-- Username -->
             <TextView
@@ -39,7 +39,7 @@
                 android:layout_weight="1"
                 android:text="Username"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginStart="16dp" />
 
@@ -52,46 +52,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="20dp">
+        android:paddingTop="16dp">
 
-        <!-- New Group -->
-        <Button
-            android:id="@+id/menuNewGroup"
+        <!-- Profile -->
+        <LinearLayout
+            android:id="@+id/menuProfile"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="56dp"
             android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:text="🆕 Новая группа"
-            android:textColor="@color/app_text_primary"
-            android:textSize="16sp"
-            android:textStyle="normal" />
+            android:orientation="horizontal"
+            android:paddingStart="24dp"
+            android:gravity="center_vertical">
 
-        <!-- Contacts -->
-        <Button
-            android:id="@+id/menuContacts"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:text="👥 Контакты"
-            android:textColor="@color/app_text_primary"
-            android:textSize="16sp"
-            android:textStyle="normal" />
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_profile"
+                android:tint="@color/app_text_primary" />
 
-        <!-- Settings -->
-        <Button
-            android:id="@+id/menuSettings"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?attr/selectableItemBackground"
-            android:gravity="center_vertical"
-            android:paddingStart="20dp"
-            android:text="⚙️ Настройки"
-            android:textColor="@color/app_text_primary"
-            android:textSize="16sp"
-            android:textStyle="normal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Профиль"
+                android:textColor="@color/app_text_primary"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

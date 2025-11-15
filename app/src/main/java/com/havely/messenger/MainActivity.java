@@ -1,6 +1,7 @@
 package com.havely.messenger;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -71,25 +72,11 @@ public class MainActivity extends Activity {
             // TODO: Создать новый чат
         });
         
-        // Обработчики меню
-        findViewById(R.id.menuNewGroup).setOnClickListener(v -> {
+        // Обработчик профиля
+        findViewById(R.id.menuProfile).setOnClickListener(v -> {
             drawerLayout.closeDrawer(Gravity.START);
-            // TODO: Создать новую группу
-        });
-        
-        findViewById(R.id.menuSecretChats).setOnClickListener(v -> {
-            drawerLayout.closeDrawer(Gravity.START);
-            // TODO: Открыть секретные чаты
-        });
-        
-        findViewById(R.id.menuSettings).setOnClickListener(v -> {
-            drawerLayout.closeDrawer(Gravity.START);
-            // TODO: Открыть настройки
-        });
-        
-        findViewById(R.id.menuContacts).setOnClickListener(v -> {
-            drawerLayout.closeDrawer(Gravity.START);
-            // TODO: Открыть контакты
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
         });
     }
     
