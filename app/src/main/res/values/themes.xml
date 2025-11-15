@@ -1,27 +1,7 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.Havely" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+<resources>
+    <style name="Theme.Havely" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/havely_primary</item>
-        <item name="colorPrimaryVariant">@color/havely_primary_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/havely_accent</item>
-        <item name="colorSecondaryVariant">@color/havely_accent_dark</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="android:statusBarColor">@color/havely_background</item>
-        <item name="android:windowBackground">@color/havely_background</item>
-        <item name="android:navigationBarColor">@color/havely_background</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowAnimationStyle">@style/HavelyAnimations</item>
-    </style>
-
-    <style name="HavelyAnimations">
-        <item name="android:windowEnterAnimation">@anim/slide_in_right</item>
-        <item name="android:windowExitAnimation">@anim/slide_out_left</item>
-    </style>
-
-    <style name="ButtonStyle" parent="Widget.Material3.Button">
-        <item name="android:backgroundTint">@color/havely_accent</item>
-        <item name="android:textColor">@color/black</item>
-        <item name="cornerRadius">16dp</item>
-        <item name="android:elevation">8dp</item>
+        <item name="colorPrimaryDark">@color/havely_primary_dark</item>
+        <item name="colorAccent">@color/havely_accent</item>
     </style>
 </resources>
