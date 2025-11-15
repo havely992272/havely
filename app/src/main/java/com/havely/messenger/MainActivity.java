@@ -17,7 +17,6 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
     private LinearLayout chatContainer, messageInputLayout;
     private WebSocketClient webSocketClient;
     private String currentUsername = "";
-    private static final String TAG = "Havely";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +57,9 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
     
     private void startRealChat(String username) {
         currentUsername = username;
-        
-        // Подключаемся к WebSocket
         webSocketClient = new WebSocketClient();
         webSocketClient.connect(username, this);
-        
-        // Показываем сообщение о подключении
-        addMessage("System", "Подключаемся к Havely сети...", "#4A0080");
+        addMessage("System", "Подключаемся к Havely...", "#4A0080");
     }
     
     private void sendRealMessage(String message) {
@@ -78,11 +73,8 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
     
     private void showChatInterface() {
         runOnUiThread(() -> {
-            // Скрываем элементы регистрации
             usernameInput.setVisibility(View.GONE);
             startButton.setVisibility(View.GONE);
-            
-            // Показываем элементы чата
             chatContainer.setVisibility(View.VISIBLE);
             messageInputLayout.setVisibility(View.VISIBLE);
         });
@@ -105,27 +97,25 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
             
             chatContainer.addView(msgView);
             
-            // Прокручиваем вниз
+            // Простая прокрутка вниз (без smoothScrollTo)
             chatContainer.post(() -> {
-                chatContainer.smoothScrollTo(0, chatContainer.getBottom());
+                chatContainer.scrollTo(0, chatContainer.getBottom());
             });
         });
     }
     
-    // WebSocket Listeners
     @Override
     public void onConnected() {
-        Log.d(TAG, "WebSocket connected successfully");
         runOnUiThread(() -> {
             showChatInterface();
-            addMessage("System", "✅ Подключено к Havely! Можно общаться!", "#00E676");
+            addMessage("System", "✅ Подключено к Havely серверу!", "#00E676");
+            addMessage("System", "💬 Теперь можно отправлять сообщения!", "#4A0080");
             Toast.makeText(this, "Подключено к серверу!", Toast.LENGTH_SHORT).show();
         });
     }
     
     @Override
     public void onMessageReceived(String message) {
-        Log.d(TAG, "Received: " + message);
         runOnUiThread(() -> {
             addMessage("Server", message, "#2D004D");
         });
@@ -134,15 +124,14 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
     @Override
     public void onDisconnected() {
         runOnUiThread(() -> {
-            addMessage("System", "❌ Соединение разорвано", "#CF6679");
+            addMessage("System", "❌ Соединение с сервером разорвано", "#CF6679");
         });
     }
     
     @Override
     public void onError(String error) {
-        Log.e(TAG, "WebSocket error: " + error);
         runOnUiThread(() -> {
-            addMessage("System", "💥 Ошибка: " + error, "#CF6679");
+            addMessage("System", "💥 Ошибка подключения: " + error, "#CF6679");
             Toast.makeText(this, "Ошибка: " + error, Toast.LENGTH_LONG).show();
         });
     }
