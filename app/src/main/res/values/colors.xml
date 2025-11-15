@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Old Havely Colors (for compatibility) -->
+    <color name="havely_primary">#4A0080</color>
+    <color name="havely_primary_dark">#2D004D</color>
+    <color name="havely_accent">#9D4EDD</color>
+    <color name="havely_secondary">#BB86FC</color>
+    <color name="havely_background">#0A0014</color>
+    <color name="havely_surface">#1A0029</color>
+    
     <!-- Premium Purple Palette -->
     <color name="premium_deep_night">#0A001A</color>
     <color name="premium_dark_purple">#1A0033</color>
