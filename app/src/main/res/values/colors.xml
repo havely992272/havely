@@ -15,4 +15,5 @@
     <color name="havely_secondary">#BB86FC</color>
     <color name="havely_background">#0A0014</color>
     <color name="havely_surface">#1A0029</color>
+    <color name="havely_text_secondary">#BB86FC</color>
 </resources>
