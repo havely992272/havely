@@ -2,87 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/havely_background"
+    android:background="#0A0014"
     android:orientation="vertical"
     android:padding="24dp"
     android:gravity="center">
 
-    <!-- Header -->
-    <LinearLayout
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔒 Havely"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Анонимный. Безопасный. Свободный."
+        android:textColor="#BB86FC"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/usernameInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/havely_primary"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center"
-        android:layout_marginBottom="32dp">
+        android:layout_marginTop="32dp"
+        android:hint="Придумай никнейм"
+        android:maxLines="1"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#BB86FC" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="🔒 Havely"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Анонимный. Безопасный. Свободный."
-            android:textColor="@color/havely_text_secondary"
-            android:textSize="14sp" />
-
-    </LinearLayout>
-
-    <!-- Login Form -->
-    <LinearLayout
+    <Button
+        android:id="@+id/startButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/havely_surface"
-        android:orientation="vertical"
-        android:padding="32dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Создай анонимный аккаунт"
-            android:textColor="@color/havely_text_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/usernameInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:hint="Придумай никнейм"
-            android:maxLines="1"
-            android:textColor="@color/havely_text_primary"
-            android:textColorHint="@color/havely_text_secondary"
-            android:backgroundTint="@color/havely_accent" />
-
-        <Button
-            android:id="@+id/startButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="НАЧАТЬ АНОНИМНОЕ ОБЩЕНИЕ"
-            android:textAllCaps="false"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:backgroundTint="@color/havely_accent"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="🔐 Сквозное шифрование\n👻 Без регистрации\n⚡ Автоудаление через 3 дня"
-            android:textColor="@color/havely_text_secondary"
-            android:textSize="12sp" />
-
-    </LinearLayout>
+        android:layout_marginTop="32dp"
+        android:text="НАЧАТЬ"
+        android:backgroundTint="#BB86FC"
+        android:textColor="#000000" />
 
 </LinearLayout>
