@@ -10,7 +10,7 @@ public class WebSocketClient {
     private WebSocket webSocket;
     private MessageListener messageListener;
     
-    // ТВОЙ IP из мобильной сети
+    // ТВОЙ IP
     private String serverUrl = "ws://100.84.189.163:8080";
     
     public interface MessageListener {
@@ -42,7 +42,7 @@ public class WebSocketClient {
                     joinMsg.put("type", "join");
                     joinMsg.put("username", username);
                     webSocket.send(joinMsg.toString());
-                    Log.d(TAG, "📨 Sent join message for: " + username);
+                    Log.d(TAG, "📨 Sent join request for: " + username);
                 } catch (Exception e) {
                     Log.e(TAG, "Error sending join message", e);
                 }
@@ -71,14 +71,17 @@ public class WebSocketClient {
     public void sendMessage(String message) {
         if (webSocket != null) {
             try {
+                // ОБЯЗАТЕЛЬНО отправляем как JSON с полем "content"
                 JSONObject msg = new JSONObject();
                 msg.put("type", "message");
-                msg.put("content", message);
+                msg.put("content", message);  // ЭТО ВАЖНО!
                 webSocket.send(msg.toString());
-                Log.d(TAG, "📤 Sent message: " + message);
+                Log.d(TAG, "📤 Sent JSON message: " + msg.toString());
             } catch (Exception e) {
                 Log.e(TAG, "Error sending message", e);
             }
+        } else {
+            Log.e(TAG, "❌ Cannot send - WebSocket is null");
         }
     }
     
