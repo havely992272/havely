@@ -14,16 +14,16 @@
         android:paddingHorizontal="16dp"
         android:gravity="center_vertical">
 
-        <!-- Menu Button -->
+        <!-- Menu Button (увеличен) -->
         <Button
             android:id="@+id/menuButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
-            android:text="≡"
+            android:text="☰"
             android:textColor="@color/telegram_text_primary"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <!-- Title -->
         <TextView
@@ -36,16 +36,16 @@
             android:textStyle="bold"
             android:gravity="center" />
 
-        <!-- Search Button -->
+        <!-- Search Button (увеличен, без зеркала) -->
         <Button
             android:id="@+id/searchButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:gravity="center"
             android:text="🔍"
             android:textColor="@color/telegram_text_primary"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -94,7 +94,7 @@
 
     </LinearLayout>
 
-    <!-- Floating Action Button -->
+    <!-- Floating Action Button (карандаш без цвета) -->
     <Button
         android:id="@+id/fabCreateChat"
         android:layout_width="56dp"

@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,18 +21,22 @@ import java.util.Map;
 public class LoginActivity extends Activity {
 
     private EditText usernameInput;
-    private Button startButton;
+    private Button startButton, themeToggle;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private SharedPreferences prefs;
+    private boolean isDarkTheme = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         
-        // Проверяем, если пользователь уже авторизован
+        // Проверяем тему
         prefs = getSharedPreferences("havely_prefs", MODE_PRIVATE);
+        isDarkTheme = prefs.getBoolean("is_dark_theme", true);
+        
+        // Проверяем, если пользователь уже авторизован
         if (prefs.getBoolean("is_logged_in", false)) {
             startMainActivity();
             return;
@@ -40,6 +47,10 @@ public class LoginActivity extends Activity {
         
         usernameInput = findViewById(R.id.usernameInput);
         startButton = findViewById(R.id.startButton);
+        themeToggle = findViewById(R.id.themeToggle);
+        
+        // Устанавливаем иконку темы
+        themeToggle.setText(isDarkTheme ? "🌙" : "☀️");
         
         startButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
@@ -49,6 +60,32 @@ public class LoginActivity extends Activity {
                 createAnonymousAccount(username);
             }
         });
+        
+        themeToggle.setOnClickListener(v -> {
+            toggleTheme();
+        });
+    }
+    
+    private void toggleTheme() {
+        // Анимация перехода
+        Animation fadeOut = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
+        Animation fadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        
+        View rootView = findViewById(android.R.id.content);
+        rootView.startAnimation(fadeOut);
+        
+        // Меняем тему
+        isDarkTheme = !isDarkTheme;
+        
+        // Сохраняем настройку
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("is_dark_theme", isDarkTheme);
+        editor.apply();
+        
+        // Перезагружаем активность для применения темы
+        recreate();
+        
+        rootView.startAnimation(fadeIn);
     }
     
     private void createAnonymousAccount(String username) {

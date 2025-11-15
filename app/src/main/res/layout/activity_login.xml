@@ -7,6 +7,18 @@
     android:padding="40dp"
     android:gravity="center">
 
+    <!-- Theme Toggle (правый верхний угол) -->
+    <Button
+        android:id="@+id/themeToggle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end|top"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:gravity="center"
+        android:text="🌙"
+        android:textColor="@color/telegram_text_primary"
+        android:textSize="18sp" />
+
     <!-- App Icon -->
     <TextView
         android:layout_width="80dp"
@@ -15,7 +27,8 @@
         android:background="@drawable/telegram_icon_background"
         android:text="✈️"
         android:textSize="36sp"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="40dp" />
 
     <!-- Title -->
     <TextView
