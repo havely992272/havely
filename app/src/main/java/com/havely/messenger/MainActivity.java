@@ -2,7 +2,6 @@ package com.havely.messenger;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,19 +9,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements WebSocketClient.MessageListener {
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Date;
+
+public class MainActivity extends Activity {
 
     private EditText usernameInput, messageInput;
     private Button startButton, sendButton;
     private LinearLayout chatContainer, messageInputLayout;
-    private WebSocketClient webSocketClient;
     private String currentUsername = "";
-    private static final String TAG = "Havely";
+    private FirebaseFirestore db;
+    private ListenerRegistration messageListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // Инициализируем Firebase
+        db = FirebaseFirestore.getInstance();
         
         initializeViews();
         setupClickListeners();
@@ -43,15 +56,14 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
             if (username.isEmpty()) {
                 Toast.makeText(this, "Введите никнейм", Toast.LENGTH_SHORT).show();
             } else {
-                startRealChat(username);
+                startChat(username);
             }
         });
         
         sendButton.setOnClickListener(v -> {
             String message = messageInput.getText().toString().trim();
             if (!message.isEmpty()) {
-                Log.d(TAG, "🔄 Sending message: " + message);
-                sendRealMessage(message);
+                sendMessage(message);
                 messageInput.setText("");
             } else {
                 Toast.makeText(this, "Введите сообщение", Toast.LENGTH_SHORT).show();
@@ -59,31 +71,90 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
         });
     }
     
-    private void startRealChat(String username) {
+    private void startChat(String username) {
         currentUsername = username;
-        webSocketClient = new WebSocketClient();
-        webSocketClient.connect(username, this);
-        addMessage("System", "Подключаемся к Havely...", "#4A0080");
+        
+        // Показываем интерфейс чата
+        showChatInterface();
+        
+        // Загружаем предыдущие сообщения
+        loadMessages();
+        
+        // Слушаем новые сообщения в реальном времени
+        listenForMessages();
+        
+        addSystemMessage("🔒 Вы вошли как: " + username);
+        addSystemMessage("💬 Чат готов к использованию!");
     }
     
-    private void sendRealMessage(String message) {
-        if (webSocketClient != null) {
-            Log.d(TAG, "📤 Calling sendMessage: " + message);
-            webSocketClient.sendMessage(message);
-            addMessage(currentUsername, message, "#9D4EDD");
-        } else {
-            Log.e(TAG, "❌ WebSocketClient is null!");
-            Toast.makeText(this, "Нет подключения к серверу", Toast.LENGTH_SHORT).show();
-        }
+    private void sendMessage(String message) {
+        if (currentUsername.isEmpty()) return;
+        
+        // Создаем сообщение
+        Map<String, Object> messageData = new HashMap<>();
+        messageData.put("username", currentUsername);
+        messageData.put("message", message);
+        messageData.put("timestamp", new Date());
+        messageData.put("color", "#9D4EDD"); // Фиолетовый для своих сообщений
+        
+        // Сохраняем в Firebase
+        db.collection("messages")
+          .add(messageData)
+          .addOnSuccessListener(documentReference -> {
+              // Сообщение отправлено
+              addMessage(currentUsername, message, "#9D4EDD");
+          })
+          .addOnFailureListener(e -> {
+              Toast.makeText(this, "Ошибка отправки: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+          });
+    }
+    
+    private void loadMessages() {
+        db.collection("messages")
+          .orderBy("timestamp", Query.Direction.ASCENDING)
+          .limit(50)
+          .get()
+          .addOnSuccessListener(queryDocumentSnapshots -> {
+              for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                  String username = document.getString("username");
+                  String message = document.getString("message");
+                  String color = document.getString("color");
+                  
+                  if (username != null && message != null) {
+                      addMessage(username, message, color != null ? color : "#2D004D");
+                  }
+              }
+          });
+    }
+    
+    private void listenForMessages() {
+        messageListener = db.collection("messages")
+          .orderBy("timestamp", Query.Direction.ASCENDING)
+          .addSnapshotListener((queryDocumentSnapshots, e) -> {
+              if (e != null) {
+                  return;
+              }
+              
+              if (queryDocumentSnapshots != null) {
+                  for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                      String username = document.getString("username");
+                      String message = document.getString("message");
+                      String color = document.getString("color");
+                      
+                      // Показываем только чужие сообщения (чтобы избежать дублирования)
+                      if (username != null && message != null && !username.equals(currentUsername)) {
+                          addMessage(username, message, color != null ? color : "#2D004D");
+                      }
+                  }
+              }
+          });
     }
     
     private void showChatInterface() {
-        runOnUiThread(() -> {
-            usernameInput.setVisibility(View.GONE);
-            startButton.setVisibility(View.GONE);
-            chatContainer.setVisibility(View.VISIBLE);
-            messageInputLayout.setVisibility(View.VISIBLE);
-        });
+        usernameInput.setVisibility(View.GONE);
+        startButton.setVisibility(View.GONE);
+        chatContainer.setVisibility(View.VISIBLE);
+        messageInputLayout.setVisibility(View.VISIBLE);
     }
     
     private void addMessage(String sender, String message, String color) {
@@ -103,52 +174,22 @@ public class MainActivity extends Activity implements WebSocketClient.MessageLis
             
             chatContainer.addView(msgView);
             
+            // Прокрутка вниз
             chatContainer.post(() -> {
                 chatContainer.scrollTo(0, chatContainer.getBottom());
             });
         });
     }
     
-    @Override
-    public void onConnected() {
-        Log.d(TAG, "✅ WebSocket connected callback");
-        runOnUiThread(() -> {
-            showChatInterface();
-            addMessage("System", "✅ Подключено к Havely серверу!", "#00E676");
-            Toast.makeText(this, "Подключено к серверу!", Toast.LENGTH_SHORT).show();
-        });
-    }
-    
-    @Override
-    public void onMessageReceived(String message) {
-        Log.d(TAG, "📩 Message received: " + message);
-        runOnUiThread(() -> {
-            addMessage("Server", message, "#2D004D");
-        });
-    }
-    
-    @Override
-    public void onDisconnected() {
-        Log.d(TAG, "❌ WebSocket disconnected");
-        runOnUiThread(() -> {
-            addMessage("System", "❌ Соединение с сервером разорвано", "#CF6679");
-        });
-    }
-    
-    @Override
-    public void onError(String error) {
-        Log.e(TAG, "💥 WebSocket error: " + error);
-        runOnUiThread(() -> {
-            addMessage("System", "💥 Ошибка: " + error, "#CF6679");
-            Toast.makeText(this, "Ошибка: " + error, Toast.LENGTH_LONG).show();
-        });
+    private void addSystemMessage(String message) {
+        addMessage("System", message, "#4A0080");
     }
     
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (webSocketClient != null) {
-            webSocketClient.disconnect();
+        if (messageListener != null) {
+            messageListener.remove();
         }
     }
 }
