@@ -25,16 +25,18 @@ public class LoginActivity extends Activity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private SharedPreferences prefs;
-    private boolean isDarkTheme = true;
+    private boolean isDarkTheme = false; // По умолчанию светлая тема
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
         
-        // Проверяем тему
+        // Загружаем настройки темы
         prefs = getSharedPreferences("havely_prefs", MODE_PRIVATE);
-        isDarkTheme = prefs.getBoolean("is_dark_theme", true);
+        isDarkTheme = prefs.getBoolean("is_dark_theme", false);
+        
+        setContentView(R.layout.activity_login);
+        applyTheme(); // Применяем тему после установки layout
         
         // Проверяем, если пользователь уже авторизован
         if (prefs.getBoolean("is_logged_in", false)) {
@@ -49,8 +51,8 @@ public class LoginActivity extends Activity {
         startButton = findViewById(R.id.startButton);
         themeToggle = findViewById(R.id.themeToggle);
         
-        // Устанавливаем иконку темы
-        themeToggle.setText(isDarkTheme ? "🌙" : "☀️");
+        // Устанавливаем иконку темы (инвертируем)
+        themeToggle.setText(isDarkTheme ? "☀️" : "🌙");
         
         startButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
@@ -86,6 +88,17 @@ public class LoginActivity extends Activity {
         recreate();
         
         rootView.startAnimation(fadeIn);
+    }
+    
+    private void applyTheme() {
+        // Простая реализация - основные цвета
+        View rootView = findViewById(android.R.id.content);
+        if (rootView != null) {
+            int backgroundColor = isDarkTheme ? 
+                getResources().getColor(R.color.dark_background) : 
+                getResources().getColor(R.color.light_background);
+            rootView.setBackgroundColor(backgroundColor);
+        }
     }
     
     private void createAnonymousAccount(String username) {

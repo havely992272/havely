@@ -1,46 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ALL Colors - Comprehensive -->
+    <!-- Light Theme Colors -->
+    <color name="light_background">#FFFFFF</color>
+    <color name="light_surface">#F5F5F5</color>
+    <color name="light_primary">#0088CC</color>
+    <color name="light_accent">#3390FF</color>
+    <color name="light_text_primary">#000000</color>
+    <color name="light_text_secondary">#666666</color>
+    <color name="light_green">#00A884</color>
     
-    <!-- Old Havely Colors -->
-    <color name="havely_primary">#2B5278</color>
-    <color name="havely_primary_dark">#1C3651</color>
-    <color name="havely_accent">#5288C1</color>
-    <color name="havely_secondary">#7F91A8</color>
-    <color name="havely_background">#0E1621</color>
-    <color name="havely_surface">#17212B</color>
+    <!-- Dark Theme Colors -->
+    <color name="dark_background">#0E1621</color>
+    <color name="dark_surface">#17212B</color>
+    <color name="dark_primary">#2B5278</color>
+    <color name="dark_accent">#5288C1</color>
+    <color name="dark_text_primary">#FFFFFF</color>
+    <color name="dark_text_secondary">#7F91A8</color>
+    <color name="dark_green">#00BFA5</color>
     
-    <!-- Premium Colors -->
-    <color name="premium_deep_night">#0A001A</color>
-    <color name="premium_dark_purple">#1A0033</color>
-    <color name="premium_royal_purple">#4A0080</color>
-    <color name="premium_violet">#7B1FA2</color>
-    <color name="premium_lavender">#9C27B0</color>
-    <color name="premium_amethyst">#BB86FC</color>
-    <color name="premium_electric_purple">#CF52FF</color>
-    <color name="premium_cyan">#00E5FF</color>
-    <color name="premium_emerald">#00E676</color>
-    <color name="premium_gold">#FFD700</color>
-    
-    <!-- Gradients -->
-    <color name="gradient_start">#4A0080</color>
-    <color name="gradient_end">#7B1FA2</color>
-    
-    <!-- Text Colors -->
-    <color name="text_primary">#FFFFFF</color>
-    <color name="text_secondary">#E0E0E0</color>
-    <color name="text_hint">#B3B3B3</color>
-    
-    <!-- Telegram Colors -->
-    <color name="telegram_background">#0E1621</color>
-    <color name="telegram_surface">#17212B</color>
-    <color name="telegram_primary">#2B5278</color>
-    <color name="telegram_accent">#5288C1</color>
-    <color name="telegram_text_primary">#FFFFFF</color>
-    <color name="telegram_text_secondary">#7F91A8</color>
-    <color name="telegram_green">#00BFA5</color>
+    <!-- Dynamic Colors (will be set programmatically) -->
+    <color name="telegram_background">#FFFFFF</color>
+    <color name="telegram_surface">#F5F5F5</color>
+    <color name="telegram_primary">#0088CC</color>
+    <color name="telegram_accent">#3390FF</color>
+    <color name="telegram_text_primary">#000000</color>
+    <color name="telegram_text_secondary">#666666</color>
+    <color name="telegram_green">#00A884</color>
     
     <!-- Basic Colors -->
     <color name="white">#FFFFFFFF</color>
     <color name="black">#FF000000</color>
+    
+    <!-- Old Colors for Compatibility -->
+    <color name="havely_primary">#0088CC</color>
+    <color name="havely_primary_dark">#0066A3</color>
+    <color name="havely_accent">#3390FF</color>
+    <color name="havely_secondary">#666666</color>
+    <color name="havely_background">#FFFFFF</color>
+    <color name="havely_surface">#F5F5F5</color>
 </resources>

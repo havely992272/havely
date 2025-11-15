@@ -2,9 +2,11 @@ package com.havely.messenger;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -19,17 +21,20 @@ public class MainActivity extends Activity {
 
     private RecyclerView chatsRecyclerView;
     private LinearLayout emptyState;
-    private Button menuButton, searchButton, themeToggle;
+    private Button menuButton, searchButton;
     private SharedPreferences prefs;
-    private boolean isDarkTheme = true;
+    private boolean isDarkTheme = false; // По умолчанию светлая тема
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         
+        // Загружаем настройки темы
         prefs = getSharedPreferences("havely_prefs", MODE_PRIVATE);
-        isDarkTheme = prefs.getBoolean("is_dark_theme", true);
+        isDarkTheme = prefs.getBoolean("is_dark_theme", false);
+        
+        setContentView(R.layout.activity_main);
+        applyTheme(); // Применяем тему после установки layout
         
         initializeViews();
         setupClickListeners();
@@ -81,7 +86,7 @@ public class MainActivity extends Activity {
         drawerUsername.setText(username);
         
         Button themeToggle = drawerView.findViewById(R.id.themeToggle);
-        themeToggle.setText(isDarkTheme ? "🌙" : "☀️");
+        themeToggle.setText(isDarkTheme ? "☀️" : "🌙"); // Инвертируем иконку
         
         themeToggle.setOnClickListener(v -> {
             toggleTheme();
@@ -103,6 +108,9 @@ public class MainActivity extends Activity {
             // TODO: Открыть настройки
             popupWindow.dismiss();
         });
+        
+        // Применяем тему к меню
+        applyThemeToView(drawerView);
     }
     
     private void toggleTheme() {
@@ -125,6 +133,73 @@ public class MainActivity extends Activity {
         recreate();
         
         rootView.startAnimation(fadeIn);
+    }
+    
+    private void applyTheme() {
+        View rootView = findViewById(android.R.id.content);
+        if (rootView != null) {
+            applyThemeToView(rootView);
+        }
+    }
+    
+    private void applyThemeToView(View view) {
+        int backgroundColor = isDarkTheme ? 
+            getResources().getColor(R.color.dark_background) : 
+            getResources().getColor(R.color.light_background);
+        
+        int surfaceColor = isDarkTheme ? 
+            getResources().getColor(R.color.dark_surface) : 
+            getResources().getColor(R.color.light_surface);
+            
+        int textPrimaryColor = isDarkTheme ? 
+            getResources().getColor(R.color.dark_text_primary) : 
+            getResources().getColor(R.color.light_text_primary);
+            
+        int textSecondaryColor = isDarkTheme ? 
+            getResources().getColor(R.color.dark_text_secondary) : 
+            getResources().getColor(R.color.light_text_secondary);
+        
+        int primaryColor = isDarkTheme ? 
+            getResources().getColor(R.color.dark_primary) : 
+            getResources().getColor(R.color.light_primary);
+        
+        // Применяем цвета ко всем элементам
+        applyColorsToViewTree(view, backgroundColor, surfaceColor, textPrimaryColor, textSecondaryColor, primaryColor);
+    }
+    
+    private void applyColorsToViewTree(View view, int bgColor, int surfaceColor, int textPrimary, int textSecondary, int primaryColor) {
+        if (view instanceof LinearLayout) {
+            if (view.getId() == R.id.emptyState || "emptyState".equals(view.getTag())) {
+                view.setBackgroundColor(bgColor);
+            } else if (view.getId() == android.R.id.content) {
+                view.setBackgroundColor(bgColor);
+            }
+        }
+        
+        if (view instanceof TextView) {
+            TextView textView = (TextView) view;
+            if (textView.getId() == R.id.drawerUsername || "username".equals(textView.getTag())) {
+                textView.setTextColor(textPrimary);
+            } else {
+                textView.setTextColor(textPrimary);
+            }
+        }
+        
+        if (view instanceof Button) {
+            Button button = (Button) view;
+            if (button.getId() == R.id.menuButton || button.getId() == R.id.searchButton) {
+                button.setTextColor(textPrimary);
+                button.setBackgroundColor(Color.TRANSPARENT);
+            }
+        }
+        
+        // Рекурсивно применяем к дочерним элементам
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                applyColorsToViewTree(viewGroup.getChildAt(i), bgColor, surfaceColor, textPrimary, textSecondary, primaryColor);
+            }
+        }
     }
     
     private void showEmptyState() {
