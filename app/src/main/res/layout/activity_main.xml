@@ -123,14 +123,14 @@
         android:background="@color/app_surface"
         android:orientation="vertical">
 
-        <!-- Header -->
+        <!-- Header - Compact Version -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:background="@color/app_accent"
+            android:layout_height="100dp"
+            android:background="@color/app_surface"
             android:orientation="vertical"
             android:padding="16dp"
-            android:gravity="bottom">
+            android:gravity="center_vertical">
 
             <!-- Avatar and Username -->
             <LinearLayout
@@ -142,11 +142,11 @@
                 <!-- Avatar -->
                 <ImageView
                     android:id="@+id/drawerAvatar"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/ic_person"
                     android:background="@drawable/avatar_background"
-                    android:padding="16dp"
+                    android:padding="12dp"
                     android:tint="@color/white" />
 
                 <!-- Username -->
@@ -156,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Username"
-                    android:textColor="@color/white"
+                    android:textColor="@color/app_text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginStart="16dp" />

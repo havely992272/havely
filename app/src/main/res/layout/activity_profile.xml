@@ -65,23 +65,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@color/app_surface"
-                android:padding="16dp"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Изменить фото профиля"
-                    android:textColor="@color/app_accent"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="16dp" />
+                android:padding="24dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center">
 
                 <!-- Avatar -->
                 <ImageView
                     android:id="@+id/profileAvatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_person_large"
                     android:background="@drawable/avatar_large_background"
                     android:padding="24dp"
@@ -107,7 +99,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Имя"
+                        android:text="Имя пользователя"
                         android:textColor="@color/app_text_secondary"
                         android:textSize="14sp"
                         android:layout_marginBottom="4dp" />
@@ -117,14 +109,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:hint="Введите имя"
+                        android:hint="От 4 до 12 символов"
                         android:textColor="@color/app_text_primary"
                         android:textColorHint="@color/app_text_secondary"
                         android:background="@android:color/transparent"
                         android:maxLines="1"
                         android:inputType="text"
+                        android:maxLength="12"
                         android:textSize="16sp"
                         android:enabled="false" />
+
+                    <TextView
+                        android:id="@+id/usernameCounter"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0/12"
+                        android:textColor="@color/app_text_secondary"
+                        android:textSize="12sp"
+                        android:gravity="end"
+                        android:layout_marginTop="4dp" />
 
                 </LinearLayout>
 
