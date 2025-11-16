@@ -1,6 +1,7 @@
 package com.havely.messenger;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,9 +14,9 @@ import android.widget.Toast;
 
 public class ProfileActivity extends Activity {
 
-    private ImageButton backButton, editSaveButton;
+    private ImageButton backButton, editButton;
     private EditText profileBio, profileUsernameInput;
-    private TextView profileUsername, bioCounter;
+    private TextView bioCounter;
     private SharedPreferences prefs;
     
     private boolean isEditing = false;
@@ -37,10 +38,9 @@ public class ProfileActivity extends Activity {
     
     private void initializeViews() {
         backButton = findViewById(R.id.backButton);
-        editSaveButton = findViewById(R.id.editSaveButton);
+        editButton = findViewById(R.id.editButton);
         profileBio = findViewById(R.id.profileBio);
         profileUsernameInput = findViewById(R.id.profileUsernameInput);
-        profileUsername = findViewById(R.id.profileUsername);
         bioCounter = findViewById(R.id.bioCounter);
     }
     
@@ -48,7 +48,6 @@ public class ProfileActivity extends Activity {
         String username = prefs.getString("username", "Пользователь");
         String bio = prefs.getString("user_bio", "");
         
-        profileUsername.setText(username);
         profileUsernameInput.setText(username);
         profileBio.setText(bio);
         
@@ -63,7 +62,7 @@ public class ProfileActivity extends Activity {
             finish();
         });
         
-        editSaveButton.setOnClickListener(v -> {
+        editButton.setOnClickListener(v -> {
             if (!isEditing) {
                 // Включаем режим редактирования
                 enableEditing();
@@ -90,12 +89,12 @@ public class ProfileActivity extends Activity {
     }
     
     private void updateBioCounter(int length) {
-        bioCounter.setText(length + "/64");
+        bioCounter.setText(length + "/70");
     }
     
     private void enableEditing() {
         isEditing = true;
-        editSaveButton.setImageResource(R.drawable.ic_check);
+        editButton.setImageResource(R.drawable.ic_check);
         
         profileBio.setEnabled(true);
         profileUsernameInput.setEnabled(true);
@@ -103,11 +102,14 @@ public class ProfileActivity extends Activity {
         // Сохраняем оригинальные значения
         originalBio = profileBio.getText().toString();
         originalUsername = profileUsernameInput.getText().toString();
+        
+        // Фокусируемся на имени
+        profileUsernameInput.requestFocus();
     }
     
     private void disableEditing() {
         isEditing = false;
-        editSaveButton.setImageResource(R.drawable.ic_edit);
+        editButton.setImageResource(R.drawable.ic_edit);
         
         profileBio.setEnabled(false);
         profileUsernameInput.setEnabled(false);
@@ -123,8 +125,8 @@ public class ProfileActivity extends Activity {
             return;
         }
         
-        if (newBio.length() > 64) {
-            Toast.makeText(this, "Описание не может превышать 64 символа", Toast.LENGTH_SHORT).show();
+        if (newBio.length() > 70) {
+            Toast.makeText(this, "Описание не может превышать 70 символов", Toast.LENGTH_SHORT).show();
             return;
         }
         
@@ -134,12 +136,14 @@ public class ProfileActivity extends Activity {
         editor.putString("user_bio", newBio);
         editor.apply();
         
-        // Обновляем отображение
-        profileUsername.setText(newUsername);
-        
         disableEditing();
         
         Toast.makeText(this, "Профиль сохранен", Toast.LENGTH_SHORT).show();
+        
+        // Обновляем MainActivity через Intent
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("username", newUsername);
+        setResult(RESULT_OK, resultIntent);
     }
     
     @Override

@@ -1,6 +1,7 @@
 package com.havely.messenger;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -49,6 +50,10 @@ public class MainActivity extends Activity {
         
         chatsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         
+        updateDrawerUsername();
+    }
+    
+    private void updateDrawerUsername() {
         String username = prefs.getString("username", "Пользователь");
         TextView drawerUsername = findViewById(R.id.drawerUsername);
         drawerUsername.setText(username);
@@ -71,7 +76,14 @@ public class MainActivity extends Activity {
             // TODO: Создать новый чат
         });
         
-        // Обработчики меню
+        // Profile
+        findViewById(R.id.menuProfile).setOnClickListener(v -> {
+            drawerLayout.closeDrawer(Gravity.START);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivityForResult(intent, 1);
+        });
+        
+        // Other menu items
         findViewById(R.id.menuNewGroup).setOnClickListener(v -> {
             drawerLayout.closeDrawer(Gravity.START);
             // TODO: Создать новую группу
@@ -85,11 +97,6 @@ public class MainActivity extends Activity {
         findViewById(R.id.menuSettings).setOnClickListener(v -> {
             drawerLayout.closeDrawer(Gravity.START);
             // TODO: Открыть настройки
-        });
-        
-        findViewById(R.id.menuContacts).setOnClickListener(v -> {
-            drawerLayout.closeDrawer(Gravity.START);
-            // TODO: Открыть контакты
         });
     }
     
@@ -123,6 +130,15 @@ public class MainActivity extends Activity {
     private void showEmptyState() {
         emptyState.setVisibility(View.VISIBLE);
         chatsRecyclerView.setVisibility(View.GONE);
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            // Обновляем имя пользователя после редактирования профиля
+            updateDrawerUsername();
+        }
     }
     
     @Override

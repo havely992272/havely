@@ -117,7 +117,7 @@
 
     <!-- Navigation Drawer -->
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/app_surface"
@@ -126,10 +126,10 @@
         <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@color/app_accent"
+            android:layout_height="160dp"
+            android:background="@color/telegram_blue"
             android:orientation="vertical"
-            android:padding="24dp"
+            android:padding="16dp"
             android:gravity="bottom">
 
             <!-- Avatar and Username -->
@@ -141,6 +141,7 @@
 
                 <!-- Avatar -->
                 <ImageView
+                    android:id="@+id/drawerAvatar"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:src="@drawable/ic_person"
@@ -156,7 +157,7 @@
                     android:layout_weight="1"
                     android:text="Username"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:layout_marginStart="16dp" />
 
@@ -169,7 +170,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="16dp">
+            android:paddingTop="8dp">
+
+            <!-- Profile -->
+            <LinearLayout
+                android:id="@+id/menuProfile"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingStart="16dp"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_person"
+                    android:tint="@color/app_text_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Профиль"
+                    android:textColor="@color/app_text_primary"
+                    android:textSize="16sp"
+                    android:layout_marginStart="32dp" />
+
+            </LinearLayout>
 
             <!-- New Group -->
             <LinearLayout
@@ -178,7 +205,7 @@
                 android:layout_height="56dp"
                 android:background="?attr/selectableItemBackground"
                 android:orientation="horizontal"
-                android:paddingStart="24dp"
+                android:paddingStart="16dp"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -193,7 +220,7 @@
                     android:text="Новая группа"
                     android:textColor="@color/app_text_primary"
                     android:textSize="16sp"
-                    android:layout_marginStart="16dp" />
+                    android:layout_marginStart="32dp" />
 
             </LinearLayout>
 
@@ -204,7 +231,7 @@
                 android:layout_height="56dp"
                 android:background="?attr/selectableItemBackground"
                 android:orientation="horizontal"
-                android:paddingStart="24dp"
+                android:paddingStart="16dp"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -219,7 +246,7 @@
                     android:text="Секретные чаты"
                     android:textColor="@color/app_text_primary"
                     android:textSize="16sp"
-                    android:layout_marginStart="16dp" />
+                    android:layout_marginStart="32dp" />
 
             </LinearLayout>
 
@@ -230,7 +257,7 @@
                 android:layout_height="56dp"
                 android:background="?attr/selectableItemBackground"
                 android:orientation="horizontal"
-                android:paddingStart="24dp"
+                android:paddingStart="16dp"
                 android:gravity="center_vertical">
 
                 <ImageView
@@ -245,33 +272,7 @@
                     android:text="Настройки"
                     android:textColor="@color/app_text_primary"
                     android:textSize="16sp"
-                    android:layout_marginStart="16dp" />
-
-            </LinearLayout>
-
-            <!-- Contacts -->
-            <LinearLayout
-                android:id="@+id/menuContacts"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="horizontal"
-                android:paddingStart="24dp"
-                android:gravity="center_vertical">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_contacts"
-                    android:tint="@color/app_text_primary" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Контакты"
-                    android:textColor="@color/app_text_primary"
-                    android:textSize="16sp"
-                    android:layout_marginStart="16dp" />
+                    android:layout_marginStart="32dp" />
 
             </LinearLayout>
 
