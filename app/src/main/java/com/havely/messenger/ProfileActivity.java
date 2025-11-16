@@ -15,13 +15,14 @@ import android.widget.Toast;
 public class ProfileActivity extends Activity {
 
     private ImageButton backButton, editButton;
-    private EditText profileBio, profileUsernameInput;
+    private EditText profileBio, profileUsernameInput, profileDisplayName;
     private TextView bioCounter, usernameCounter;
     private SharedPreferences prefs;
     
     private boolean isEditing = false;
     private String originalBio = "";
     private String originalUsername = "";
+    private String originalDisplayName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,22 +42,25 @@ public class ProfileActivity extends Activity {
         editButton = findViewById(R.id.editButton);
         profileBio = findViewById(R.id.profileBio);
         profileUsernameInput = findViewById(R.id.profileUsernameInput);
+        profileDisplayName = findViewById(R.id.profileDisplayName);
         bioCounter = findViewById(R.id.bioCounter);
         usernameCounter = findViewById(R.id.usernameCounter);
     }
     
     private void loadProfileData() {
         String username = prefs.getString("username", "Пользователь");
+        String displayName = prefs.getString("display_name", username); // По умолчанию равен username
         String bio = prefs.getString("user_bio", "");
         
         profileUsernameInput.setText(username);
+        profileDisplayName.setText(displayName);
         profileBio.setText(bio);
         
         originalBio = bio;
         originalUsername = username;
+        originalDisplayName = displayName;
         
         updateBioCounter(bio.length());
-        updateUsernameCounter(username.length());
     }
     
     private void setupClickListeners() {
@@ -98,12 +102,12 @@ public class ProfileActivity extends Activity {
             
             @Override
             public void afterTextChanged(Editable s) {
-                updateUsernameCounter(s.length());
-                
                 // Подсветка если выходит за пределы
                 if (s.length() < 4 || s.length() > 12) {
+                    usernameCounter.setText("От 4 до 12 символов");
                     usernameCounter.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
                 } else {
+                    usernameCounter.setText("Доступно");
                     usernameCounter.setTextColor(getResources().getColor(R.color.app_text_secondary));
                 }
             }
@@ -114,23 +118,21 @@ public class ProfileActivity extends Activity {
         bioCounter.setText(length + "/70");
     }
     
-    private void updateUsernameCounter(int length) {
-        usernameCounter.setText(length + "/12");
-    }
-    
     private void enableEditing() {
         isEditing = true;
         editButton.setImageResource(R.drawable.ic_check);
         
         profileBio.setEnabled(true);
         profileUsernameInput.setEnabled(true);
+        profileDisplayName.setEnabled(true);
         
         // Сохраняем оригинальные значения
         originalBio = profileBio.getText().toString();
         originalUsername = profileUsernameInput.getText().toString();
+        originalDisplayName = profileDisplayName.getText().toString();
         
         // Фокусируемся на имени
-        profileUsernameInput.requestFocus();
+        profileDisplayName.requestFocus();
     }
     
     private void disableEditing() {
@@ -139,6 +141,7 @@ public class ProfileActivity extends Activity {
         
         profileBio.setEnabled(false);
         profileUsernameInput.setEnabled(false);
+        profileDisplayName.setEnabled(false);
         
         // Возвращаем нормальный цвет счетчику
         usernameCounter.setTextColor(getResources().getColor(R.color.app_text_secondary));
@@ -147,6 +150,13 @@ public class ProfileActivity extends Activity {
     private void saveProfile() {
         String newBio = profileBio.getText().toString().trim();
         String newUsername = profileUsernameInput.getText().toString().trim();
+        String newDisplayName = profileDisplayName.getText().toString().trim();
+        
+        // Валидация отображаемого имени
+        if (newDisplayName.isEmpty()) {
+            Toast.makeText(this, "Имя не может быть пустым", Toast.LENGTH_SHORT).show();
+            return;
+        }
         
         // Валидация юзернейма
         if (newUsername.isEmpty()) {
@@ -173,6 +183,7 @@ public class ProfileActivity extends Activity {
         // Сохраняем в SharedPreferences
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("username", newUsername);
+        editor.putString("display_name", newDisplayName);
         editor.putString("user_bio", newBio);
         editor.apply();
         
@@ -183,6 +194,7 @@ public class ProfileActivity extends Activity {
         // Обновляем MainActivity через Intent
         Intent resultIntent = new Intent();
         resultIntent.putExtra("username", newUsername);
+        resultIntent.putExtra("display_name", newDisplayName);
         setResult(RESULT_OK, resultIntent);
     }
     
@@ -192,9 +204,9 @@ public class ProfileActivity extends Activity {
             // Отменяем редактирование
             profileBio.setText(originalBio);
             profileUsernameInput.setText(originalUsername);
+            profileDisplayName.setText(originalDisplayName);
             disableEditing();
             updateBioCounter(originalBio.length());
-            updateUsernameCounter(originalUsername.length());
         } else {
             super.onBackPressed();
         }

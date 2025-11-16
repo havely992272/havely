@@ -89,6 +89,43 @@
                 android:background="@color/app_surface"
                 android:layout_marginBottom="8dp">
 
+                <!-- Display Name -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Имя"
+                        android:textColor="@color/app_text_secondary"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <EditText
+                        android:id="@+id/profileDisplayName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:hint="Ваше отображаемое имя"
+                        android:textColor="@color/app_text_primary"
+                        android:textColorHint="@color/app_text_secondary"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:inputType="text"
+                        android:textSize="16sp"
+                        android:enabled="false" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/app_background"
+                    android:layout_marginStart="16dp" />
+
                 <!-- Username -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -109,7 +146,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:hint="От 4 до 12 символов"
+                        android:hint="@username"
                         android:textColor="@color/app_text_primary"
                         android:textColorHint="@color/app_text_secondary"
                         android:background="@android:color/transparent"
@@ -121,12 +158,12 @@
 
                     <TextView
                         android:id="@+id/usernameCounter"
-                        android:layout_width="match_parent"
+                        android:layout_width="match_content"
                         android:layout_height="wrap_content"
-                        android:text="0/12"
+                        android:text="От 4 до 12 символов"
                         android:textColor="@color/app_text_secondary"
                         android:textSize="12sp"
-                        android:gravity="end"
+                        android:gravity="start"
                         android:layout_marginTop="4dp" />
 
                 </LinearLayout>

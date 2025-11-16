@@ -22,6 +22,7 @@ public class MainActivity extends Activity {
     private ImageButton menuButton, searchButton, fabCreateChat;
     private DrawerLayout drawerLayout;
     private SharedPreferences prefs;
+    private TextView drawerUsername;
 
     private float x1, x2;
     static final int MIN_DISTANCE = 100;
@@ -47,6 +48,7 @@ public class MainActivity extends Activity {
         menuButton = findViewById(R.id.menuButton);
         searchButton = findViewById(R.id.searchButton);
         fabCreateChat = findViewById(R.id.fabCreateChat);
+        drawerUsername = findViewById(R.id.drawerUsername);
         
         chatsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         
@@ -54,9 +56,15 @@ public class MainActivity extends Activity {
     }
     
     private void updateDrawerUsername() {
+        // Используем display_name если есть, иначе username
+        String displayName = prefs.getString("display_name", "");
         String username = prefs.getString("username", "Пользователь");
-        TextView drawerUsername = findViewById(R.id.drawerUsername);
-        drawerUsername.setText(username);
+        
+        if (!displayName.isEmpty()) {
+            drawerUsername.setText(displayName);
+        } else {
+            drawerUsername.setText(username);
+        }
     }
     
     private void setupClickListeners() {
@@ -139,6 +147,13 @@ public class MainActivity extends Activity {
             // Обновляем имя пользователя после редактирования профиля
             updateDrawerUsername();
         }
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Обновляем имя при возвращении на экран
+        updateDrawerUsername();
     }
     
     @Override
