@@ -142,17 +142,4 @@ public class SearchActivity extends Activity {
     public void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-    
-    // Класс для хранения данных пользователя
-    public static class User {
-        public String id;
-        public String username;
-        public String displayName;
-        
-        public User(String id, String username, String displayName) {
-            this.id = id;
-            this.username = username;
-            this.displayName = displayName;
-        }
-    }
 }

@@ -32,7 +32,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = users.get(position);
         
-        holder.displayName.setText(user.displayName != null ? user.displayName : user.username);
+        String displayName = user.displayName != null ? user.displayName : user.username;
+        holder.displayName.setText(displayName);
         holder.username.setText("@" + user.username);
         
         // Обработчик клика на весь элемент (открывает профиль)
