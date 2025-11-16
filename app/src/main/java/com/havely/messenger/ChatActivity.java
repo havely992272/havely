@@ -1,6 +1,7 @@
 package com.havely.messenger;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,12 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.Timestamp;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -138,9 +139,9 @@ public class ChatActivity extends Activity {
                 .addSnapshotListener((document, e) -> {
                     if (document != null && document.exists()) {
                         Timestamp lastSeen = document.getTimestamp("lastSeen");
-                        boolean isOnline = document.getBoolean("isOnline");
+                        Boolean isOnline = document.getBoolean("isOnline");
                         
-                        if (isOnline) {
+                        if (isOnline != null && isOnline) {
                             chatUserStatus.setText("Онлайн");
                         } else if (lastSeen != null) {
                             String time = formatLastSeen(lastSeen.toDate());
@@ -270,7 +271,7 @@ public class ChatActivity extends Activity {
     }
     
     private void showToast(String message) {
-        android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
     
     @Override

@@ -14,7 +14,7 @@
         android:gravity="end"
         android:background="@drawable/message_out_background"
         android:padding="12dp"
-        android:maxWidth="80%">
+        android:maxWidth="80%p">
 
         <TextView
             android:id="@+id/messageText"
