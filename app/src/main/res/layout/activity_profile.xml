@@ -146,7 +146,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text=""
-                        android:hint="@username"
+                        android:hint="username"
                         android:textColor="@color/app_text_primary"
                         android:textColorHint="@color/app_text_secondary"
                         android:background="@android:color/transparent"
@@ -158,7 +158,7 @@
 
                     <TextView
                         android:id="@+id/usernameCounter"
-                        android:layout_width="match_content"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="От 4 до 12 символов"
                         android:textColor="@color/app_text_secondary"
