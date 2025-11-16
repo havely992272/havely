@@ -131,7 +131,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/primary_dark"
+                    android:background="@color/app_background"
                     android:layout_marginStart="16dp" />
 
                 <!-- Bio -->

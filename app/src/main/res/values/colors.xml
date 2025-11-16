@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Black Theme Only -->
-    <color name="app_background">#000000</color>
-    <color name="app_surface">#1A1A1A</color>
-    <color name="app_primary">#FFFFFF</color>
-    <color name="app_accent">#3390FF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="background_dark">#1A1A1A</color>
+    <color name="primary_dark">#2D2D2D</color>
+    <color name="gray_light">#CCCCCC</color>
+    
+    <!-- App Colors -->
+    <color name="app_background">#1A1A1A</color>
+    <color name="app_surface">#2D2D2D</color>
     <color name="app_text_primary">#FFFFFF</color>
-    <color name="app_text_secondary">#AAAAAA</color>
-    
-    <!-- Basic Colors -->
-    <color name="white">#FFFFFFFF</color>
-    <color name="black">#FF000000</color>
-    
-    <!-- Old Colors for Compatibility -->
-    <color name="havely_primary">#FFFFFF</color>
-    <color name="havely_primary_dark">#000000</color>
-    <color name="havely_accent">#3390FF</color>
-    <color name="havely_secondary">#AAAAAA</color>
-    <color name="havely_background">#000000</color>
-    <color name="havely_surface">#1A1A1A</color>
-    
-    <!-- Legacy Colors -->
-    <color name="white_primary">#FFFFFF</color>
-    <color name="white_accent">#3390FF</color>
-    <color name="white_background">#000000</color>
-    <color name="black_background">#000000</color>
-    <color name="white_surface">#1A1A1A</color>
+    <color name="app_text_secondary">#CCCCCC</color>
+    <color name="app_accent">#3390EC</color>
 </resources>
